@@ -23,7 +23,7 @@ export default function RSVPForm() {
     const { data, error: searchError } = await supabase
       .from("guests")
       .select("*")
-      .ilike("full_name", `%${search}%`)
+      .ilike("full_name", `%${search.trim()}%`)
       .single();
 
     if (searchError || !data) {
