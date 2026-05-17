@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { motion, AnimatePresence } from "framer-motion";
-import confetti from "canvas-confetti"; // Import the confetti library
+import confetti from "canvas-confetti";
 
 export default function RSVPForm() {
   const [search, setSearch] = useState("");
@@ -19,14 +19,17 @@ export default function RSVPForm() {
   const handleSearch = async () => {
     setLoading(true);
     setError("");
-    
-   const cleanedSearch = search.trim().toLowerCase();
 
-const { data, error: searchError } = await supabase
-  .from("guests")
-  .select("*")
-  .ilike("full_name", `%${cleanedSearch}%`)
-  .limit(1);
+    const cleanedSearch = search.trim();
+
+    const { data, error: searchError } = await supabase
+      .from("guests")
+      .select("*")
+      .ilike("full_name", `%${cleanedSearch}%`)
+      .limit(1);
+
+    console.log(data);
+    console.log(searchError);
 
     if (searchError || !data || data.length === 0) {
       setError("We couldn't find that name. Please try your full name.");
@@ -40,8 +43,7 @@ const { data, error: searchError } = await supabase
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
-    // 1. Insert the RSVP record
+    
     const { error: rsvpError } = await supabase
       .from("rsvps")
       .insert([
@@ -57,13 +59,12 @@ const { data, error: searchError } = await supabase
       setError("Something went wrong. Please try again.");
       setLoading(false);
     } else {
-      // 2. Update the guest record to show they've responded
       await supabase
         .from("guests")
         .update({ is_responded: true })
         .eq("id", foundGuest.id);
-        
-      // 3. TRIGGER PETAL CONFETTI
+
+      // Confetti animation
       const duration = 5 * 1000;
       const animationEnd = Date.now() + duration;
 
@@ -73,8 +74,9 @@ const { data, error: searchError } = await supabase
           angle: 60,
           spread: 55,
           origin: { x: 0 },
-          colors: ["#ffb7c5", "#ff99aa", "#ffffff"], // Petal colors
+          colors: ["#ffb7c5", "#ff99aa", "#ffffff"],
         });
+
         confetti({
           particleCount: 2,
           angle: 120,
@@ -87,9 +89,9 @@ const { data, error: searchError } = await supabase
           requestAnimationFrame(frame);
         }
       };
+
       frame();
 
-      // 4. Show success state
       setSubmitted(true);
       setLoading(false);
     }
@@ -97,13 +99,18 @@ const { data, error: searchError } = await supabase
 
   if (submitted) {
     return (
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         className="text-center p-10 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl border border-white"
       >
-        <h2 className="text-3xl font-serif text-stone-800 mb-4">Thank You!</h2>
-        <p className="text-stone-600">Your RSVP has been received. We can't wait to see you!</p>
+        <h2 className="text-3xl font-serif text-stone-800 mb-4">
+          Thank You!
+        </h2>
+
+        <p className="text-stone-600">
+          Your RSVP has been received. We can't wait to see you!
+        </p>
       </motion.div>
     );
   }
@@ -119,25 +126,35 @@ const { data, error: searchError } = await supabase
             exit={{ opacity: 0, y: -20 }}
             className="bg-white/80 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/50"
           >
-            <h2 className="text-3xl font-serif text-center mb-6 text-stone-800">Find Your Invite</h2>
-           <input
-  type="text"
-  placeholder="Full Name"
-  autoCapitalize="none"
-  autoCorrect="off"
-  spellCheck={false}
-  className="w-full p-4 rounded-xl border border-stone-200 mb-4 text-stone-800 outline-none focus:ring-2 focus:ring-stone-400 bg-white/50"
-  value={search}
-  onChange={(e) => setSearch(e.target.value)}
-/>
+            <h2 className="text-3xl font-serif text-center mb-6 text-stone-800">
+              Find Your Invite
+            </h2>
+
+            <input
+              type="text"
+              placeholder="Full Name"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              className="w-full p-4 rounded-xl border border-stone-200 mb-4 text-stone-800 outline-none focus:ring-2 focus:ring-stone-400 bg-white/50"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+
             <button
+              type="button"
               onClick={handleSearch}
               disabled={loading}
               className="w-full bg-stone-800 text-white p-4 rounded-xl font-medium hover:bg-stone-700 transition-all active:scale-95 disabled:opacity-50"
             >
               {loading ? "Searching..." : "Search"}
             </button>
-            {error && <p className="text-red-500 text-sm mt-4 text-center">{error}</p>}
+
+            {error && (
+              <p className="text-red-500 text-sm mt-4 text-center">
+                {error}
+              </p>
+            )}
           </motion.div>
         ) : (
           <motion.form
@@ -147,29 +164,49 @@ const { data, error: searchError } = await supabase
             onSubmit={handleSubmit}
             className="bg-white/90 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white"
           >
-            <h2 className="text-2xl font-serif mb-2 text-stone-800">Hello, {foundGuest.full_name}!</h2>
-            <p className="text-stone-500 mb-8 italic">Will you be attending?</p>
+            <h2 className="text-2xl font-serif mb-2 text-stone-800">
+              Hello, {foundGuest.full_name}!
+            </h2>
+
+            <p className="text-stone-500 mb-8 italic">
+              Will you be attending?
+            </p>
 
             <div className="flex gap-4 mb-8">
               <button
                 type="button"
                 onClick={() => setAttending(true)}
-                className={`flex-1 p-4 rounded-xl border-2 transition-all ${attending === true ? 'border-stone-800 bg-stone-50' : 'border-stone-100'}`}
+                className={`flex-1 p-4 rounded-xl border-2 transition-all ${
+                  attending === true
+                    ? "border-stone-800 bg-stone-50"
+                    : "border-stone-100"
+                }`}
               >
                 Yes, I'll be there!
               </button>
+
               <button
                 type="button"
                 onClick={() => setAttending(false)}
-                className={`flex-1 p-4 rounded-xl border-2 transition-all ${attending === false ? 'border-stone-800 bg-stone-50' : 'border-stone-100'}`}
+                className={`flex-1 p-4 rounded-xl border-2 transition-all ${
+                  attending === false
+                    ? "border-stone-800 bg-stone-50"
+                    : "border-stone-100"
+                }`}
               >
                 Sadly, no.
               </button>
             </div>
 
             {attending && (
-              <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-                <label className="block text-sm font-medium text-stone-600 mb-2 text-left">Dietary Restrictions</label>
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+              >
+                <label className="block text-sm font-medium text-stone-600 mb-2 text-left">
+                  Dietary Restrictions
+                </label>
+
                 <input
                   type="text"
                   className="w-full p-4 rounded-xl border border-stone-200 mb-4 bg-white"
@@ -177,7 +214,11 @@ const { data, error: searchError } = await supabase
                   value={dietary}
                   onChange={(e) => setDietary(e.target.value)}
                 />
-                <label className="block text-sm font-medium text-stone-600 mb-2 text-left">Song Request</label>
+
+                <label className="block text-sm font-medium text-stone-600 mb-2 text-left">
+                  Song Request
+                </label>
+
                 <input
                   type="text"
                   className="w-full p-4 rounded-xl border border-stone-200 mb-6 bg-white"
@@ -195,8 +236,8 @@ const { data, error: searchError } = await supabase
             >
               {loading ? "Submitting..." : "Send RSVP"}
             </button>
-            
-            <button 
+
+            <button
               type="button"
               onClick={() => setFoundGuest(null)}
               className="w-full text-stone-400 text-xs mt-4 underline"
