@@ -20,17 +20,19 @@ export default function RSVPForm() {
     setLoading(true);
     setError("");
     
-    const { data, error: searchError } = await supabase
-      .from("guests")
-      .select("*")
-      .ilike("full_name", `%${search.trim()}%`)
-      .single();
+   const cleanedSearch = search.trim().toLowerCase();
 
-    if (searchError || !data) {
+const { data, error: searchError } = await supabase
+  .from("guests")
+  .select("*")
+  .ilike("full_name", `%${cleanedSearch}%`)
+  .limit(1);
+
+    if (searchError || !data || data.length === 0) {
       setError("We couldn't find that name. Please try your full name.");
       setLoading(false);
     } else {
-      setFoundGuest(data);
+      setFoundGuest(data[0]);
       setLoading(false);
     }
   };
@@ -118,13 +120,16 @@ export default function RSVPForm() {
             className="bg-white/80 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/50"
           >
             <h2 className="text-3xl font-serif text-center mb-6 text-stone-800">Find Your Invite</h2>
-            <input
-              type="text"
-              placeholder="Full Name"
-              className="w-full p-4 rounded-xl border border-stone-200 mb-4 text-stone-800 outline-none focus:ring-2 focus:ring-stone-400 bg-white/50"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+           <input
+  type="text"
+  placeholder="Full Name"
+  autoCapitalize="none"
+  autoCorrect="off"
+  spellCheck={false}
+  className="w-full p-4 rounded-xl border border-stone-200 mb-4 text-stone-800 outline-none focus:ring-2 focus:ring-stone-400 bg-white/50"
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+/>
             <button
               onClick={handleSearch}
               disabled={loading}
