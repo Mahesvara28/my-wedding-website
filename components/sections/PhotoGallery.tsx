@@ -4,11 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const photos = [
-  { src: "/images/couple-1.jpg", alt: "Dei & Paolo - Photo 1" },
-  { src: "/images/couple-2.jpg", alt: "Dei & Paolo - Photo 2" },
-  { src: "/images/couple-3.jpg", alt: "Dei & Paolo - Photo 3" },
-  { src: "/images/couple-4.jpg", alt: "Dei & Paolo - Photo 4" },
-  { src: "/images/couple-5.jpg", alt: "Dei & Paolo - Photo 5" },
+  { src: "/images/Couple2.jpg", alt: "Dei & Paolo - Photo 1" },
+  { src: "/images/dnp1.jpg", alt: "Dei & Paolo - Photo 2" },
+  { src: "/images/dnp2.jpg", alt: "Dei & Paolo - Photo 3" },
+  { src: "/images/dnp3.jpg", alt: "Dei & Paolo - Photo 4" },
+  { src: "/images/dnp4.jpg", alt: "Dei & Paolo - Photo 5" },
 ];
 
 export default function PhotoGallery() {
