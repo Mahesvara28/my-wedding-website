@@ -12,7 +12,7 @@ export default function Countdown() {
 
   useEffect(() => {
     // TARGET DATE: FEB 16, 2027
-    const targetDate = new Date("2027-02-16T00:00:00").getTime();
+    const targetDate = new Date("2027-02-21T00:00:00").getTime();
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const difference = targetDate - now;

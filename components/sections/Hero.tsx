@@ -16,7 +16,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           className="uppercase tracking-[0.5em] text-[10px] mb-4 opacity-70"
         >
-          Save the Date
+          Save the Date!
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -24,7 +24,7 @@ export default function Hero() {
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="text-6xl md:text-[8rem] font-serif mb-4 tracking-tighter leading-none"
         >
-          Dei & Paolo
+          Daisy & Paolo
         </motion.h1>
         <div className="h-10 w-[1px] bg-white/20 mx-auto mb-6" />
       </div>

@@ -47,7 +47,7 @@ export default function SnapAndShare() {
         <ScrollReveal>
           <div className="inline-block px-12 py-6 bg-gradient-to-r from-[#F5E6D9] to-[#E8D5C9] rounded-2xl shadow-lg">
             <p className="text-3xl md:text-4xl font-serif text-stone-800 tracking-wide">
-              #DeiAndPaoloForever
+              #SinceDeiJuan
             </p>
           </div>
         </ScrollReveal>

@@ -149,7 +149,7 @@ export default function ScratchDate() {
     >
       {/* The Actual Date */}
       <div className="absolute inset-0 flex items-center justify-center bg-stone-900 text-white text-2xl md:text-3xl tracking-[0.3em] font-serif">
-        16.02.2027
+        02.21.2027
       </div>
       
       {/* The Scratch Layer */}
