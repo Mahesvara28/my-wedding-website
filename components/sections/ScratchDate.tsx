@@ -2,54 +2,73 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-export default function ScratchDate() {
+interface ScratchCircleProps {
+  value: string;
+  label: string;
+}
+
+function ScratchCircle({ value, label }: ScratchCircleProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isRevealed, setIsRevealed] = useState(false);
-  const [scratchProgress, setScratchProgress] = useState(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    // Optimize for getImageData
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
     if (!ctx) return;
 
-    // Handle high DPI displays
     const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
+    // Use a responsive base size, we'll scale it via CSS
+    const size = 140; 
     
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    // CSS will handle the actual display size responsively
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    
     ctx.scale(dpr, dpr);
 
-    // Create gradient cover with shimmer effect
-    const gradient = ctx.createLinearGradient(0, 0, rect.width, rect.height);
-    gradient.addColorStop(0, "#57534e");
-    gradient.addColorStop(0.5, "#78716c");
-    gradient.addColorStop(1, "#57534e");
+    // Create gradient cover with warm terracotta/beige colors
+    const gradient = ctx.createLinearGradient(0, 0, size, size);
+    gradient.addColorStop(0, "#A67B5B"); // warm-accent
+    gradient.addColorStop(0.5, "#C49A8A"); // warm-terracotta
+    gradient.addColorStop(1, "#DCC8A8"); // warm-beige
     
     ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, rect.width, rect.height);
+    ctx.fillRect(0, 0, size, size);
 
-    // Add elegant texture pattern
-    ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
-    for (let i = 0; i < 100; i++) {
-      const x = Math.random() * rect.width;
-      const y = Math.random() * rect.height;
+    // Add texture pattern
+    ctx.fillStyle = "rgba(255, 255, 255, 0.2)";
+    for (let i = 0; i < 50; i++) {
+      const x = Math.random() * size;
+      const y = Math.random() * size;
       const radius = Math.random() * 2 + 1;
       ctx.beginPath();
       ctx.arc(x, y, radius, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // Add "SCRATCH HERE" text
-    ctx.fillStyle = "#a8a29e";
-    ctx.font = "bold 11px sans-serif";
+    // Add instruction text
+    ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+    ctx.font = "bold 12px Montserrat, sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText("✦ SCRATCH TO REVEAL ✦", rect.width / 2, rect.height / 2 + 4);
+    ctx.textBaseline = "middle";
+    ctx.fillText("SCRATCH", size / 2, size / 2);
 
     let isDrawing = false;
-    let scratchPercentage = 0;
+
+    const revealCompletely = () => {
+      if (isRevealed) return;
+      setIsRevealed(true);
+      canvas.style.transition = "opacity 0.8s ease-out";
+      canvas.style.opacity = "0";
+      setTimeout(() => {
+        if (canvas) canvas.style.display = "none";
+      }, 800);
+    };
 
     const checkScratchProgress = () => {
       if (!canvas || isRevealed) return;
@@ -62,44 +81,27 @@ export default function ScratchDate() {
         if (pixels[i] === 0) transparentPixels++;
       }
       
-      scratchPercentage = (transparentPixels / (pixels.length / 4)) * 100;
-      setScratchProgress(scratchPercentage);
+      const percentage = (transparentPixels / (pixels.length / 4)) * 100;
 
-      if (scratchPercentage > 45) {
-        // Auto-reveal when 45% scratched
+      if (percentage >= 45) {
         revealCompletely();
       }
-    };
-
-    const revealCompletely = () => {
-      if (isRevealed) return;
-      setIsRevealed(true);
-      canvas.style.transition = "opacity 1s ease-out";
-      canvas.style.opacity = "0";
-      setTimeout(() => {
-        if (canvas) canvas.style.display = "none";
-      }, 1000);
     };
 
     const scratch = (x: number, y: number) => {
       ctx.globalCompositeOperation = "destination-out";
       ctx.beginPath();
-      ctx.arc(x, y, 35, 0, Math.PI * 2); // Larger brush for better UX
+      ctx.arc(x, y, 25, 0, Math.PI * 2); // Slightly larger brush for easier scratching
       ctx.fill();
-      
-      // Check progress every few scratches
-      if (Math.random() > 0.85) {
-        checkScratchProgress();
-      }
     };
 
     const getPos = (e: MouseEvent | TouchEvent) => {
       const rect = canvas.getBoundingClientRect();
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+      const clientX = "touches" in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
+      const clientY = "touches" in e ? e.touches[0].clientY : (e as MouseEvent).clientY;
       return {
-        x: (clientX - rect.left),
-        y: (clientY - rect.top)
+        x: (clientX - rect.left) * (size / rect.width),
+        y: (clientY - rect.top) * (size / rect.height),
       };
     };
 
@@ -114,10 +116,16 @@ export default function ScratchDate() {
       e.preventDefault();
       const pos = getPos(e);
       scratch(pos.x, pos.y);
+      
+      // Check progress periodically to save performance
+      if (Math.random() > 0.7) {
+        checkScratchProgress();
+      }
     };
 
     const handleEnd = () => {
       isDrawing = false;
+      checkScratchProgress(); // Final check on release
     };
 
     canvas.addEventListener("mousedown", handleStart);
@@ -141,36 +149,53 @@ export default function ScratchDate() {
   }, [isRevealed]);
 
   return (
-    <motion.div 
-      className="relative w-72 h-20 mx-auto overflow-hidden rounded-2xl cursor-crosshair shadow-2xl border border-white/10"
-      initial={{ scale: 0.95, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.6, delay: 0.5 }}
-    >
-      {/* The Actual Date */}
-      <div className="absolute inset-0 flex items-center justify-center bg-stone-900 text-white text-2xl md:text-3xl tracking-[0.3em] font-serif">
-        02.21.2027
+    <div className="flex flex-col items-center gap-4">
+      <motion.div 
+        className="relative w-[100px] h-[100px] md:w-[140px] md:h-[140px] rounded-full overflow-hidden shadow-2xl border-4 border-warm-beige bg-warm-dark"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        {/* The Date Value */}
+        <div className="absolute inset-0 flex items-center justify-center text-white text-2xl md:text-4xl font-serif font-medium">
+          {value}
+        </div>
+        
+        {/* The Scratch Layer */}
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 z-10 cursor-crosshair"
+          style={{ touchAction: "none" }}
+        />
+      </motion.div>
+      
+      {/* Label */}
+      <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-warm-dark/60 font-sans">
+        {label}
+      </span>
+    </div>
+  );
+}
+
+export default function ScratchDate() {
+  return (
+    <div className="flex flex-col items-center w-full max-w-4xl mx-auto px-4">
+      {/* Main Heading - Updated to match Hero section size */}
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-4xl md:text-6xl font-serif text-warm-dark tracking-tight mb-12 md:mb-16 text-center"
+      >
+        Save the Date
+      </motion.h2>
+      
+      {/* Scratch Circles Container - Corrected to Feb 21, 2027 */}
+      <div className="flex flex-row gap-8 md:gap-16 items-center justify-center">
+        <ScratchCircle value="21" label="Day" />
+        <ScratchCircle value="02" label="Month" />
+        <ScratchCircle value="2027" label="Year" />
       </div>
-      
-      {/* The Scratch Layer */}
-      <canvas
-        ref={canvasRef}
-        width={288}
-        height={80}
-        className="absolute inset-0 z-10 w-full h-full"
-        style={{ touchAction: "none" }}
-      />
-      
-      {/* Progress indicator (optional) */}
-      {!isRevealed && scratchProgress > 0 && scratchProgress < 45 && (
-        <motion.div 
-          className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] text-white/60 tracking-widest"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
-          {Math.round(scratchProgress)}% revealed
-        </motion.div>
-      )}
-    </motion.div>
+    </div>
   );
 }

@@ -1,38 +1,60 @@
 "use client";
-import { motion } from "framer-motion";
-import ScratchDate from "./ScratchDate";
-import HeroSlideshow from "./HeroSlideshow";
+import { useState, useEffect } from "react";
+
+const backgroundImages = [
+  "/images/hero-bg-1.jpg", // Replace with your actual image paths
+  "/images/hero-bg-2.jpg",
+  "/images/hero-bg-3.jpg",
+];
 
 export default function Hero() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="relative h-[100dvh] w-full flex flex-col items-center justify-start pt-20 overflow-hidden snap-start">
-      {/* Slideshow Background */}
-      <HeroSlideshow />
+    <section className="relative h-screen w-full overflow-hidden">
+      {backgroundImages.map((src, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${src})` }}
+          />
+          <div className="absolute inset-0 bg-black/30" />
+        </div>
+      ))}
 
-      {/* Content moved to the very top */}
-      <div className="relative z-10 text-center text-white px-4 mt-8">
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="uppercase tracking-[0.5em] text-[10px] mb-4 opacity-70"
-        >
-          Save the Date!
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="text-6xl md:text-[8rem] font-serif mb-4 tracking-tighter leading-none"
-        >
-          Daisy & Paolo
-        </motion.h1>
-        <div className="h-10 w-[1px] bg-white/20 mx-auto mb-6" />
+      <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
+        <div>
+          <h1 className="text-6xl md:text-8xl font-serif mb-6 drop-shadow-lg">
+            Paolo & Daisy
+          </h1>
+          <p className="text-xl md:text-2xl tracking-[0.2em] font-sans font-light drop-shadow-lg">
+            Invite you to celebrate their wedding
+          </p>
+        </div>
       </div>
 
-      {/* Scratch-off Date - Moved below the image */}
-      <div className="relative z-10 mt-auto mb-12">
-        <ScratchDate />
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+        {backgroundImages.map((_, index) => (
+          <div
+            key={index}
+            className={`h-1 rounded-full transition-all ${
+              index === currentImageIndex ? "w-8 bg-white" : "w-2 bg-white/50"
+            }`}
+          />
+        ))}
       </div>
-    </div>
+    </section>
   );
 }

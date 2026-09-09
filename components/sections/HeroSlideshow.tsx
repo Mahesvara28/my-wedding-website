@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const heroImages = [
-  "/images/hero-bg.png",
-  "/images/dnp1.jpg", // Add your additional images here
-  "/images/dnp2.jpg",
-  "/images/dnp3.jpg",
+  "/images/FirstSlide1.jpg", // Add your additional images here
+  "/images/FirstSlide2.jpg",
+  "/images/FirstSlide3.jpg",
+  "/images/FirstSlide4.jpg"
 ];
 
 export default function HeroSlideshow() {

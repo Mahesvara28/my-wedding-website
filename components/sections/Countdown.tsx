@@ -11,8 +11,9 @@ export default function Countdown() {
   });
 
   useEffect(() => {
-    // TARGET DATE: FEB 16, 2027
-    const targetDate = new Date("2027-02-21T00:00:00").getTime();
+    // TARGET DATE: FEB 21, 2027 at 2:00 PM (Matching your ceremony schedule)
+    const targetDate = new Date("2027-02-21T14:00:00").getTime();
+    
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const difference = targetDate - now;
@@ -39,43 +40,47 @@ export default function Countdown() {
   const isWeddingDay = timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.mins === 0 && timeLeft.secs === 0;
 
   return (
-    <div className="flex flex-wrap gap-6 md:gap-16 justify-center items-center py-12">
+    <div className="flex flex-wrap gap-4 md:gap-8 justify-center items-center py-12">
       {isWeddingDay ? (
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className="text-center"
         >
-          <h2 className="text-4xl md:text-6xl font-serif text-stone-800 tracking-tighter">
-            Today is the day! We are getting married! 
+          <h2 className="text-4xl md:text-6xl font-serif text-warm-dark tracking-tighter">
+            Today is the day! We are getting married!
           </h2>
         </motion.div>
       ) : (
-        // The actual grid code for the numbers
-        Object.entries(timeLeft).map(([label, value], index) => (
-          <motion.div
-            key={label}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="flex flex-col items-center"
-          >
-            {/* Big Serif Numbers */}
-            <div className="text-5xl md:text-8xl font-serif font-light text-stone-800 tracking-tighter">
-              {formatNumber(value)}
+        <div className="flex flex-wrap justify-center items-start gap-2 md:gap-6">
+          {Object.entries(timeLeft).map(([label, value], index) => (
+            <div key={label} className="flex items-start">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex flex-col items-center"
+              >
+                {/* Big Serif Numbers - Matched to Hero section size */}
+                <div className="text-6xl md:text-8xl font-serif font-light text-warm-dark tracking-tighter tabular-nums">
+                  {formatNumber(value)}
+                </div>
+                
+                {/* Elegant Labels */}
+                <div className="mt-2 md:mt-4 text-[10px] md:text-xs uppercase tracking-[0.3em] text-warm-accent font-sans font-medium">
+                  {label}
+                </div>
+              </motion.div>
+              
+              {/* Elegant separator dot between units (hidden on mobile, clean flex spacing on desktop) */}
+              {index < 3 && (
+                <div className="hidden md:flex items-start justify-center w-8 md:w-12 pt-4 md:pt-6 text-warm-beige text-4xl md:text-6xl font-serif font-light select-none">
+                  &middot;
+                </div>
+              )}
             </div>
-            {/* Elegant Labels */}
-            <div className="mt-4 text-[10px] md:text-[11px] uppercase tracking-[0.4em] text-stone-400 font-medium">
-              {label}
-            </div>
-            {/* Subtle separator dot between units (except the last one) */}
-            {index < 3 && (
-              <div className="hidden md:block absolute translate-x-[4.5rem] translate-y-[-1rem] text-stone-200 text-2xl font-light">
-                &middot;
-              </div>
-            )}
-          </motion.div>
-        ))
+          ))}
+        </div>
       )}
     </div>
   );

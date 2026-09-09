@@ -5,13 +5,13 @@ const venues = [
   {
     title: "The Ceremony",
     name: "Sacred Heart of Jesus Parish",
-    time: "3:00 PM",
+    time: "2:00 PM",
     image: "/images/Church.jpg",
   },
   {
     title: "The Celebration",
     name: "The Palms Country Club By Filinvest",
-    time: "5:30 PM",
+    time: "5:00 PM",
     image: "/images/Reception.jpg",
   }
 ];

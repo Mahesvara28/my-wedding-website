@@ -5,50 +5,40 @@ import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 
 export default function RSVPForm() {
-  const [search, setSearch] = useState("");
-  const [foundGuest, setFoundGuest] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [fullName, setFullName] = useState("");
   const [attending, setAttending] = useState<boolean | null>(null);
   const [dietary, setDietary] = useState("");
   const [song, setSong] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
-
-  const handleSearch = async () => {
-    setLoading(true);
-    setError("");
-    const cleanedSearch = search.trim();
-    
-    const { data, error: searchError } = await supabase
-      .from("guests")
-      .select("*")
-      .ilike("full_name", `%${cleanedSearch}%`)
-      .limit(1);
-
-    if (searchError || !data || data.length === 0) {
-      setError("We couldn't find that name. Please try your full name.");
-      setLoading(false);
-    } else {
-      setFoundGuest(data[0]);
-      setLoading(false);
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!fullName.trim()) {
+      setError("Please enter your full name.");
+      return;
+    }
+    if (attending === null) {
+      setError("Please let us know if you will be attending.");
+      return;
+    }
+
     setLoading(true);
-    setError(""); // Clear previous errors
+    setError("");
 
-    console.log("Submitting RSVP for:", foundGuest.full_name, "Attending:", attending);
+    console.log("Submitting RSVP for:", fullName, "Attending:", attending);
 
+    // Insert directly into the rsvps table using the typed full_name
     const { error: rsvpError } = await supabase
       .from("rsvps")
       .insert([
         {
-          guest_id: foundGuest.id,
+          full_name: fullName.trim(),
           attending: attending,
-          dietary_restrictions: dietary,
-          song_request: song,
+          dietary_restrictions: attending ? dietary.trim() : "N/A",
+          song_request: attending ? song.trim() : "N/A",
         },
       ]);
 
@@ -57,29 +47,23 @@ export default function RSVPForm() {
       setError("Something went wrong. Please try again.");
       setLoading(false);
     } else {
-      // Update guest status
-      await supabase
-        .from("guests")
-        .update({ is_responded: true })
-        .eq("id", foundGuest.id);
-
-      // Confetti animation
-      const duration = 5 * 1000;
+      // Confetti animation with wedding colors
+      const duration = 3 * 1000;
       const animationEnd = Date.now() + duration;
       const frame = () => {
         confetti({
-          particleCount: 2,
+          particleCount: 3,
           angle: 60,
           spread: 55,
           origin: { x: 0 },
-          colors: ["#ffb7c5", "#ff99aa", "#ffffff"],
+          colors: ["#E07A5F", "#5A6B4A", "#F2E8DC"], // Terracotta, Olive, Cream
         });
         confetti({
-          particleCount: 2,
+          particleCount: 3,
           angle: 120,
           spread: 55,
           origin: { x: 1 },
-          colors: ["#ffb7c5", "#ff99aa", "#ffffff"],
+          colors: ["#E07A5F", "#5A6B4A", "#F2E8DC"],
         });
         if (Date.now() < animationEnd) {
           requestAnimationFrame(frame);
@@ -96,13 +80,13 @@ export default function RSVPForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="text-center p-10 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl border border-white"
+        className="text-center p-10 bg-warm-cream/90 backdrop-blur-md rounded-3xl shadow-2xl border border-warm-beige/50"
       >
-        <h2 className="text-3xl font-serif text-stone-800 mb-4">
+        <h2 className="text-4xl font-serif text-warm-dark mb-4">
           Thank You!
         </h2>
-        <p className="text-stone-600">
-          Your RSVP has been received. We can't wait to see you!
+        <p className="text-warm-dark/80 font-sans">
+          Your RSVP has been received. We can't wait to celebrate with you!
         </p>
       </motion.div>
     );
@@ -111,133 +95,122 @@ export default function RSVPForm() {
   return (
     <div className="w-full max-w-md mx-auto p-4">
       <AnimatePresence mode="wait">
-        {!foundGuest ? (
-          <motion.div
-            key="search"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="bg-white/80 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/50"
-          >
-            <h2 className="text-3xl font-serif text-center mb-6 text-stone-800">
-              Find Your Invite
-            </h2>
+        <motion.form
+          key="form"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          onSubmit={handleSubmit}
+          className="bg-warm-cream/90 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-warm-beige/50"
+        >
+          <h2 className="text-4xl font-serif text-center mb-2 text-warm-dark">
+            RSVP
+          </h2>
+          <p className="text-warm-dark/60 text-center mb-8 italic font-sans text-sm">
+            Please let us know if you can make it
+          </p>
+
+          {/* Full Name Input */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-warm-dark mb-2 text-left font-sans">
+              Full Name *
+            </label>
             <input
               type="text"
-              placeholder="Full Name"
-              autoCapitalize="none"
-              autoCorrect="off"
-              spellCheck={false}
-              className="w-full p-4 rounded-xl border border-stone-200 mb-4 text-stone-800 outline-none focus:ring-2 focus:ring-stone-400 bg-white/50"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              required
+              autoCapitalize="words"
+              className="w-full p-4 rounded-xl border border-warm-beige/50 mb-2 text-warm-dark outline-none focus:ring-2 focus:ring-warm-accent bg-white/50 placeholder-warm-dark/30 transition-all"
+              placeholder="e.g., Juan Dela Cruz"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
             />
-            <button
-              type="button"
-              onClick={handleSearch}
-              disabled={loading}
-              className="w-full bg-stone-800 text-white p-4 rounded-xl font-medium hover:bg-stone-700 transition-all active:scale-95 disabled:opacity-50"
-            >
-              {loading ? "Searching..." : "Search"}
-            </button>
-            {error && (
-              <p className="text-red-500 text-sm mt-4 text-center">
-                {error}
-              </p>
-            )}
-          </motion.div>
-        ) : (
-          <motion.form
-            key="form"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            onSubmit={handleSubmit}
-            className="bg-white/90 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white"
-          >
-            <h2 className="text-2xl font-serif mb-2 text-stone-800">
-              Hello, {foundGuest.full_name}!
-            </h2>
-            <p className="text-stone-500 mb-8 italic">
-              Will you be attending?
-            </p>
-            
-            <div className="flex gap-4 mb-8">
+          </div>
+
+          {/* Attending Buttons */}
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-warm-dark mb-3 text-left font-sans">
+              Will you be attending? *
+            </label>
+            <div className="flex gap-4">
               <button
                 type="button"
                 onClick={() => setAttending(true)}
-                className={`flex-1 p-4 rounded-xl border-2 transition-all ${
+                className={`flex-1 p-4 rounded-xl border-2 transition-all font-medium font-sans ${
                   attending === true
-                    ? "border-stone-800 bg-stone-50"
-                    : "border-stone-100"
+                    ? "border-warm-accent bg-warm-accent/10 text-warm-accent"
+                    : "border-warm-beige/50 text-warm-dark/60 hover:border-warm-accent/50"
                 }`}
               >
-                Yes, I'll be there!
+                Joyfully Accepts
               </button>
               <button
                 type="button"
                 onClick={() => setAttending(false)}
-                className={`flex-1 p-4 rounded-xl border-2 transition-all ${
+                className={`flex-1 p-4 rounded-xl border-2 transition-all font-medium font-sans ${
                   attending === false
-                    ? "border-stone-800 bg-stone-50"
-                    : "border-stone-100"
+                    ? "border-warm-dark bg-warm-dark/10 text-warm-dark"
+                    : "border-warm-beige/50 text-warm-dark/60 hover:border-warm-dark/50"
                 }`}
               >
-                Sadly, no.
+                Regretfully Declines
               </button>
             </div>
+          </div>
 
-            {attending && (
+          {/* Conditional Fields for Attending Guests */}
+          <AnimatePresence>
+            {attending === true && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="overflow-hidden"
               >
-                <label className="block text-sm font-medium text-stone-600 mb-2 text-left">
-                  Dietary Restrictions
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 rounded-xl border border-stone-200 mb-4 bg-white"
-                  placeholder="Allergies, Vegan, etc."
-                  value={dietary}
-                  onChange={(e) => setDietary(e.target.value)}
-                />
-                <label className="block text-sm font-medium text-stone-600 mb-2 text-left">
-                  Song Request
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-4 rounded-xl border border-stone-200 mb-6 bg-white"
-                  placeholder="What will get you on the dance floor?"
-                  value={song}
-                  onChange={(e) => setSong(e.target.value)}
-                />
+                <div className="mb-6">
+                  <label className="block text-sm font-medium text-warm-dark mb-2 text-left font-sans">
+                    Dietary Restrictions
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-4 rounded-xl border border-warm-beige/50 bg-white/50 text-warm-dark outline-none focus:ring-2 focus:ring-warm-accent placeholder-warm-dark/30 transition-all"
+                    placeholder="Allergies, vegetarian, etc. (Optional)"
+                    value={dietary}
+                    onChange={(e) => setDietary(e.target.value)}
+                  />
+                </div>
+
+                <div className="mb-8">
+                  <label className="block text-sm font-medium text-warm-dark mb-2 text-left font-sans">
+                    Song Request
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full p-4 rounded-xl border border-warm-beige/50 bg-white/50 text-warm-dark outline-none focus:ring-2 focus:ring-warm-accent placeholder-warm-dark/30 transition-all"
+                    placeholder="What will get you on the dance floor?"
+                    value={song}
+                    onChange={(e) => setSong(e.target.value)}
+                  />
+                </div>
               </motion.div>
             )}
+          </AnimatePresence>
 
-            <button
-              type="submit"
-              disabled={attending === null || loading}
-              className="w-full bg-stone-800 text-white p-4 rounded-xl font-medium hover:bg-stone-700 disabled:opacity-30 transition-all"
-            >
-              {loading ? "Submitting..." : "Send RSVP"}
-            </button>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={loading || attending === null || !fullName.trim()}
+            className="w-full bg-warm-accent text-white p-4 rounded-xl font-medium hover:bg-[#8b6a4f] disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-[0.98] shadow-md font-sans"
+          >
+            {loading ? "Sending..." : "Send RSVP"}
+          </button>
 
-            {/* ADDED: Error display for the form */}
-            {error && (
-              <p className="text-red-500 text-sm mt-4 text-center bg-red-50 p-3 rounded-lg">
-                {error}
-              </p>
-            )}
-
-            <button
-              type="button"
-              onClick={() => setFoundGuest(null)}
-              className="w-full text-stone-400 text-xs mt-4 underline"
-            >
-              Not your name? Click here
-            </button>
-          </motion.form>
-        )}
+          {/* Error Message */}
+          {error && (
+            <p className="text-red-500 text-sm mt-4 text-center bg-red-50/50 p-3 rounded-lg border border-red-100 font-sans">
+              {error}
+            </p>
+          )}
+        </motion.form>
       </AnimatePresence>
     </div>
   );
