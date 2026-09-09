@@ -8,10 +8,7 @@ const nextConfig = {
     // This stops the build from crashing due to formatting rules
     ignoreDuringBuilds: true,
   },
-  // Helps images load correctly on mobile
-  images: {
-    unoptimized: true,
-  }
+  // REMOVE the unoptimized: true block so Next.js can optimize images automatically!
 };
 
 export default nextConfig;
