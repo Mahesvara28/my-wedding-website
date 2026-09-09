@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import Image from "next/image";
 
 const storySections = [
   {
@@ -44,34 +45,47 @@ function ElegantSlideshow({ photos }: { photos: string[] }) {
   const getPhotoIndex = (offset: number) => (currentIndex + offset + photos.length) % photos.length;
 
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden bg-warm-cream rounded-xl">
+    <div className="relative w-full h-[350px] md:h-[450px] flex items-center justify-center overflow-hidden bg-warm-cream rounded-xl">
+      
+      {/* Side Images - Lowered quality & removed blur to save GPU power */}
       <div 
-        className="absolute left-[5%] w-[30%] h-[80%] z-10 opacity-40 blur-[2px] overflow-hidden rounded-lg cursor-pointer"
+        className="absolute left-[2%] w-[25%] h-[80%] z-10 opacity-30 overflow-hidden rounded-lg cursor-pointer hidden md:block"
         onClick={prevPhoto}
       >
-        <img src={photos[getPhotoIndex(-1)]} className="w-full h-full object-cover" alt="prev" />
+        <Image src={photos[getPhotoIndex(-1)]} alt="prev" fill className="object-cover" sizes="25vw" quality={40} />
       </div>
 
       <AnimatePresence custom={direction} mode="wait">
         <motion.div
           key={currentIndex}
           custom={direction}
-          initial={{ x: direction > 0 ? 200 : -200, opacity: 0, scale: 0.9 }}
-          animate={{ x: 0, opacity: 1, scale: 1 }}
-          exit={{ x: direction > 0 ? -200 : 200, opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="relative w-[60%] h-[90%] z-20 shadow-2xl overflow-hidden rounded-lg cursor-pointer"
+          // OPTIMIZATION: Removed 'scale' animation (scaling images causes massive lag on mobile)
+          initial={{ x: direction > 0 ? 80 : -80, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: direction > 0 ? -80 : 80, opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          // OPTIMIZATION: Added 'will-change-transform' to force GPU acceleration
+          // Changed shadow-2xl to shadow-lg to reduce rendering lag
+          className="relative w-[85%] md:w-[60%] h-[90%] z-20 shadow-lg overflow-hidden rounded-lg cursor-pointer will-change-transform"
           onClick={nextPhoto}
         >
-          <img src={photos[currentIndex]} className="w-full h-full object-cover" alt="current" />
+          <Image 
+            src={photos[currentIndex]} 
+            alt="current" 
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 85vw, 60vw"
+            quality={85}
+            priority={currentIndex === 0}
+          />
         </motion.div>
       </AnimatePresence>
 
       <div 
-        className="absolute right-[5%] w-[30%] h-[80%] z-10 opacity-40 blur-[2px] overflow-hidden rounded-lg cursor-pointer"
+        className="absolute right-[2%] w-[25%] h-[80%] z-10 opacity-30 overflow-hidden rounded-lg cursor-pointer hidden md:block"
         onClick={nextPhoto}
       >
-        <img src={photos[getPhotoIndex(1)]} className="w-full h-full object-cover" alt="next" />
+        <Image src={photos[getPhotoIndex(1)]} alt="next" fill className="object-cover" sizes="25vw" quality={40} />
       </div>
       
       <div className="absolute bottom-6 flex gap-2 z-30">
@@ -90,10 +104,7 @@ export default function OurStory() {
         <ScrollReveal variant="fadeUp">
           <div className="text-center mb-20">
             <span className="text-[10px] uppercase tracking-[0.5em] text-warm-accent block mb-4 font-sans">Our Journey</span>
-            
-            {/* UPDATED: Increased font size to match the Hero section */}
             <h2 className="text-6xl md:text-8xl font-serif text-warm-dark tracking-tighter">Our Story</h2>
-            
             <div className="w-16 h-[1px] bg-warm-beige mx-auto mt-6" />
           </div>
         </ScrollReveal>
@@ -106,8 +117,8 @@ export default function OurStory() {
                   <ElegantSlideshow photos={section.photos} />
                 </div>
                 <div className={`w-full md:w-1/2 text-center md:text-left ${i % 2 !== 0 ? 'md:text-right' : ''}`}>
-                  <h3 className="text-4xl font-serif text-warm-dark italic mb-6">"{section.title}"</h3>
-                  <p className="text-[#6B705C] text-lg font-sans leading-relaxed">{section.text}</p>
+                  <h3 className="text-3xl md:text-4xl font-serif text-warm-dark italic mb-6">"{section.title}"</h3>
+                  <p className="text-warm-dark/70 text-base md:text-lg font-sans leading-relaxed">{section.text}</p>
                 </div>
               </div>
             </ScrollReveal>
