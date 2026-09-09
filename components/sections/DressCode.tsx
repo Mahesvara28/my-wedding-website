@@ -107,10 +107,10 @@ export default function DressCode() {
             {/* Clickable Image Container */}
             <div 
               className="relative h-[400px] md:h-[500px] group cursor-pointer overflow-hidden"
-              onClick={() => setEnlargedImage("/images/dresscode-guests.png")}
+              onClick={() => setEnlargedImage("/images/dresscode-guests.webp")}
             >
               <img 
-                src="/images/dresscode-guests.png" 
+                src="/images/dresscode-guests.webp" 
                 alt="Guests Attire Inspiration"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
