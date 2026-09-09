@@ -28,10 +28,10 @@ export default function DressCode() {
           </p>
         </motion.div>
 
-        {/* Two Side-by-Side Images with Color Palettes */}
+        {/* Two Side-by-Side Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           
-          {/* Principal Sponsors Image & Colors */}
+          {/* PRINCIPAL SPONSORS CARD */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -49,54 +49,59 @@ export default function DressCode() {
                 alt="Principal Sponsors Attire Inspiration"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              
-              {/* Hover Overlay with Magnifying Glass */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 p-4 rounded-full shadow-xl transform scale-75 group-hover:scale-100">
                   <ZoomIn className="w-6 h-6 text-warm-dark" />
                 </div>
               </div>
-
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white pointer-events-none">
                 <h3 className="text-3xl font-serif mb-2">Principal Sponsors</h3>
-                <p className="text-sm opacity-90">Ninongs & Ninangs</p>
+                <p className="text-sm opacity-90">Gentlemen & Ladies</p>
               </div>
             </div>
 
-            {/* Color Palette & Details */}
-            <div className="p-8">
-              <div className="space-y-6 mb-8">
-                <div className="text-center">
-                  <p className="text-sm uppercase tracking-widest text-warm-accent mb-3">Ninongs</p>
-                  <p className="text-lg text-warm-dark font-serif mb-2">Charcoal Gray Suit</p>
-                  <p className="text-warm-dark text-sm">with Black Tie</p>
-                </div>
-                <div className="w-full h-px bg-warm-beige/50" />
-                <div className="text-center">
-                  <p className="text-sm uppercase tracking-widest text-warm-accent mb-3">Ninangs</p>
-                  <p className="text-lg text-warm-dark font-serif">Long Dark Green Gowns</p>
+            {/* Role-Specific Details & Palettes */}
+            <div className="p-8 space-y-8">
+              
+              {/* Ninongs */}
+              <div className="text-center">
+                <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Gentlemen</p>
+                <p className="text-lg text-warm-dark font-serif mb-4">Charcoal Gray Suit with Black Tie</p>
+                <div className="flex justify-center gap-4">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-10 h-10 rounded-full bg-[#3D4044] shadow-md border-2 border-white" />
+                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Charcoal</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-10 h-10 rounded-full bg-[#1A1A1A] shadow-md border-2 border-white" />
+                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Black</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex justify-center gap-6">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 rounded-full bg-[#3D4044] shadow-md border-2 border-white" />
-                  <span className="text-xs text-warm-dark font-medium">Charcoal</span>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 rounded-full bg-[#2F4F2F] shadow-md border-2 border-white" />
-                  <span className="text-xs text-warm-dark font-medium">Dark Green</span>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 rounded-full bg-[#1A1A1A] shadow-md border-2 border-white" />
-                  <span className="text-xs text-warm-dark font-medium">Black</span>
+              <div className="w-full h-px bg-warm-beige/50" />
+
+              {/* Ladies */}
+              <div className="text-center">
+                <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Ladies</p>
+                <p className="text-lg text-warm-dark font-serif mb-4">Long Dark Green or Olive Gowns</p>
+                <div className="flex justify-center gap-4">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-10 h-10 rounded-full bg-[#2F4F2F] shadow-md border-2 border-white" />
+                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Dark Green</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-10 h-10 rounded-full bg-[#5A6B4A] shadow-md border-2 border-white" />
+                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Olive</span>
+                  </div>
                 </div>
               </div>
+
             </div>
           </motion.div>
 
-          {/* Guests Image & Colors */}
+          {/* GUESTS CARD */}
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -114,14 +119,11 @@ export default function DressCode() {
                 alt="Guests Attire Inspiration"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              
-              {/* Hover Overlay with Magnifying Glass */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 p-4 rounded-full shadow-xl transform scale-75 group-hover:scale-100">
                   <ZoomIn className="w-6 h-6 text-warm-dark" />
                 </div>
               </div>
-
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white pointer-events-none">
                 <h3 className="text-3xl font-serif mb-2">Guests</h3>
@@ -129,40 +131,46 @@ export default function DressCode() {
               </div>
             </div>
 
-            {/* Color Palette & Details */}
-            <div className="p-8">
-              <div className="space-y-6 mb-8">
-                <div className="text-center">
-                  <p className="text-sm uppercase tracking-widest text-warm-accent mb-3">Gentlemen</p>
-                  <p className="text-lg text-warm-dark font-serif mb-2">Black Suit</p>
-                  <p className="text-warm-dark text-sm">with Black Tie</p>
-                </div>
-                <div className="w-full h-px bg-warm-beige/50" />
-                <div className="text-center">
-                  <p className="text-sm uppercase tracking-widest text-warm-accent mb-3">Ladies</p>
-                  <p className="text-lg text-warm-dark font-serif">Terracotta Shades</p>
+            {/* Role-Specific Details & Palettes */}
+            <div className="p-8 space-y-8">
+              
+              {/* Gentlemen */}
+              <div className="text-center">
+                <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Gentlemen</p>
+                <p className="text-lg text-warm-dark font-serif mb-4">Black Suit with Black Tie</p>
+                <div className="flex justify-center gap-4">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-10 h-10 rounded-full bg-[#1A1A1A] shadow-md border-2 border-white" />
+                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Black</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                  </div>
                 </div>
               </div>
 
-              <div className="flex justify-center gap-6">
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 rounded-full bg-[#1A1A1A] shadow-md border-2 border-white" />
-                  <span className="text-xs text-warm-dark font-medium">Black</span>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 rounded-full bg-[#E07A5F] shadow-md border-2 border-white" />
-                  <span className="text-xs text-warm-dark font-medium">Terracotta</span>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-12 h-12 rounded-full bg-[#C49A8A] shadow-md border-2 border-white" />
-                  <span className="text-xs text-warm-dark font-medium">Rust</span>
+              <div className="w-full h-px bg-warm-beige/50" />
+
+              {/* Ladies */}
+              <div className="text-center">
+                <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Ladies</p>
+                <p className="text-lg text-warm-dark font-serif mb-4">Terracotta, Rust, or Earthy Shades</p>
+                <div className="flex justify-center gap-4">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-10 h-10 rounded-full bg-[#E07A5F] shadow-md border-2 border-white" />
+                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Terracotta</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-10 h-10 rounded-full bg-[#C49A8A] shadow-md border-2 border-white" />
+                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Rust</span>
+                  </div>
                 </div>
               </div>
+
             </div>
           </motion.div>
         </div>
 
-        {/* Overall Theme Color Palette */}
+        {/* Note at the bottom */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -170,29 +178,9 @@ export default function DressCode() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-center bg-warm-cream p-8 rounded-lg border border-warm-beige/30"
         >
-          <h3 className="text-xl font-serif text-warm-accent mb-6">Wedding Theme Colors</h3>
-          <div className="flex flex-wrap justify-center gap-8">
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-[#E07A5F] shadow-lg border-4 border-white" />
-              <span className="text-warm-dark text-sm font-medium">Terracotta</span>
-            </div>
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-[#5A6B4A] shadow-lg border-4 border-white" />
-              <span className="text-warm-dark text-sm font-medium">Olive Green</span>
-            </div>
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-[#2F4F2F] shadow-lg border-4 border-white" />
-              <span className="text-warm-dark text-sm font-medium">Dark Green</span>
-            </div>
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-[#3D4044] shadow-lg border-4 border-white" />
-              <span className="text-warm-dark text-sm font-medium">Charcoal</span>
-            </div>
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-16 h-16 rounded-full bg-[#1A1A1A] shadow-lg border-4 border-white" />
-              <span className="text-warm-dark text-sm font-medium">Black</span>
-            </div>
-          </div>
+          <p className="text-warm-dark/80 text-sm md:text-base font-sans leading-relaxed max-w-2xl mx-auto italic">
+            We kindly request that our guests avoid wearing pure white to allow our bride to shine on her special day.
+          </p>
         </motion.div>
       </div>
 
@@ -206,7 +194,6 @@ export default function DressCode() {
             onClick={() => setEnlargedImage(null)}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 cursor-zoom-out"
           >
-            {/* Close Button */}
             <button 
               className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-[101]"
               onClick={() => setEnlargedImage(null)}
@@ -214,7 +201,6 @@ export default function DressCode() {
               <X className="w-10 h-10" />
             </button>
 
-            {/* Enlarged Image */}
             <motion.img
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -223,7 +209,7 @@ export default function DressCode() {
               src={enlargedImage}
               alt="Enlarged Dress Code"
               className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image itself
+              onClick={(e) => e.stopPropagation()}
             />
           </motion.div>
         )}

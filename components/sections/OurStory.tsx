@@ -6,23 +6,23 @@ import Image from "next/image";
 
 const storySections = [
   {
-    title: "Our first photoshoot together",
-    text: "It all kicked off in 2017 when a workplace intro revealed the ultimate plot twist: we'd actually been running in the exact same neighborhood crew all along!",
+    title: "Where It All Began",
+    text: "It all kicked off in 2017 when a workplace intro revealed the ultimate plot twist: we’d actually been running in the exact same neighborhood crew all along! What started as casual work banter quickly turned into late-night talks, endless laughter, and realizing we were standard-issue best friends meant for each other.",
     photos: ["/images/story1-photo1.jpg", "/images/story1-photo2.jpg", "/images/story1-photo3.jpg"]
   },
   {
-    title: "Laughing together",
-    text: "What started as casual work banter quickly turned into late-night talks, endless laughter, and realizing we were standard-issue best friends meant for each other.",
+    title: "Our Favorite Adventure",
+    text: "Fast forward through years of adventures, favorite memories, and building our life together, which naturally led to our engagement on December 2, 2025 in Japan—our all-time favorite destination!",
     photos: ["/images/story2-photo1.jpg", "/images/story2-photo2.jpg", "/images/story2-photo3.jpg"]
   },
   {
-    title: "Our joy",
-    text: "Fast forward through years of adventures, favorite memories, and building our life together, which naturally led to our engagement on December 2, 2025 in Japan.",
+    title: "Divine Redirection",
+    text: "When our original plan at Minoh Falls was unexpectedly closed, we pivoted to Umeda Sky Tower. But after checking out the crowded top deck, Pao knew we needed something far more personal. We headed down, found a quiet set of bleachers, and shared a peaceful, unscripted moment just for the two of us. He asked, she said yes, and right as we turned around, we saw a small church sitting right beside us—a serene, divine redirection truly designed by God's plan.",
     photos: ["/images/story3-photo1.jpg", "/images/story3-photo2.jpg", "/images/story3-photo3.jpg"]
   },
   {
-    title: "Forever begins",
-    text: "When our original plan at Minoh Falls was unexpectedly closed, we pivoted to Umeda Sky Tower. He asked, she said yes, and right as we turned around, we saw a small church sitting right beside us.",
+    title: "The Celebration Begins",
+    text: "Now, with hearts full of gratitude for how every step of our journey has unfolded, we feel this is the most beautiful timing to bring all our favorite people together under one roof. On February 21, 2027, we warmly invite you to join us as we celebrate our marriage—a day to share our joy, give thanks for love, family, and faith, and party with the ones who mean the world to us!",
     photos: ["/images/story4-photo1.jpg", "/images/story4-photo2.jpg", "/images/story4-photo3.jpg"]
   }
 ];
@@ -45,9 +45,9 @@ function ElegantSlideshow({ photos }: { photos: string[] }) {
   const getPhotoIndex = (offset: number) => (currentIndex + offset + photos.length) % photos.length;
 
   return (
-    <div className="relative w-full h-[350px] md:h-[450px] flex items-center justify-center overflow-hidden bg-warm-cream rounded-xl">
+    <div className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden bg-warm-cream rounded-xl">
       
-      {/* Side Images - Lowered quality & removed blur to save GPU power */}
+      {/* Side Images - Lower quality & hidden on mobile to save GPU power */}
       <div 
         className="absolute left-[2%] w-[25%] h-[80%] z-10 opacity-30 overflow-hidden rounded-lg cursor-pointer hidden md:block"
         onClick={prevPhoto}
@@ -59,13 +59,10 @@ function ElegantSlideshow({ photos }: { photos: string[] }) {
         <motion.div
           key={currentIndex}
           custom={direction}
-          // OPTIMIZATION: Removed 'scale' animation (scaling images causes massive lag on mobile)
           initial={{ x: direction > 0 ? 80 : -80, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: direction > 0 ? -80 : 80, opacity: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          // OPTIMIZATION: Added 'will-change-transform' to force GPU acceleration
-          // Changed shadow-2xl to shadow-lg to reduce rendering lag
           className="relative w-[85%] md:w-[60%] h-[90%] z-20 shadow-lg overflow-hidden rounded-lg cursor-pointer will-change-transform"
           onClick={nextPhoto}
         >
@@ -117,8 +114,12 @@ export default function OurStory() {
                   <ElegantSlideshow photos={section.photos} />
                 </div>
                 <div className={`w-full md:w-1/2 text-center md:text-left ${i % 2 !== 0 ? 'md:text-right' : ''}`}>
-                  <h3 className="text-3xl md:text-4xl font-serif text-warm-dark italic mb-6">"{section.title}"</h3>
-                  <p className="text-warm-dark/70 text-base md:text-lg font-sans leading-relaxed">{section.text}</p>
+                  <h3 className="text-3xl md:text-4xl font-serif text-warm-dark italic mb-6">
+                    "{section.title}"
+                  </h3>
+                  <p className="text-warm-dark/70 text-base md:text-lg font-sans leading-relaxed">
+                    {section.text}
+                  </p>
                 </div>
               </div>
             </ScrollReveal>
