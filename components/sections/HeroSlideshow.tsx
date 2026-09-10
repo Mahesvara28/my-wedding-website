@@ -1,49 +1,60 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 
-const heroImages = [
-  "/images/FirstSlide1.jpg",
-  "/images/FirstSlide2.jpg",
-  "/images/FirstSlide3.jpg",
-  "/images/FirstSlide4.jpg"
+const backgroundImages = [
+  "/images/hero-bg-1.JPG", // Changed to uppercase JPG
+  "/images/hero-bg-2.JPG", // Changed to uppercase JPG
+  "/images/hero-bg-3.JPG", // Changed to uppercase JPG
 ];
 
-export default function HeroSlideshow() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export default function Hero() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
     }, 5000);
-
-    return () => clearInterval(timer);
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: "easeInOut" }}
-          className="absolute inset-0"
+    <section className="relative h-screen w-full overflow-hidden">
+      {backgroundImages.map((src, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === currentImageIndex ? "opacity-100" : "opacity-0"
+          }`}
         >
-          <Image
-            src={heroImages[currentIndex]}
-            alt="Daisy & Paolo Wedding"
-            fill
-            priority={currentIndex === 0} // Only first image loads immediately
-            className="object-cover object-[50%_70%]"
-            sizes="100vw"
-            quality={90} // High quality for hero images
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${src})` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-transparent" />
-        </motion.div>
-      </AnimatePresence>
-    </div>
+          <div className="absolute inset-0 bg-black/30" />
+        </div>
+      ))}
+
+      <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
+        <div>
+          <h1 className="text-6xl md:text-8xl font-serif mb-6 drop-shadow-lg">
+            Paolo & Daisy
+          </h1>
+          <p className="text-xl md:text-2xl tracking-[0.2em] font-sans font-light drop-shadow-lg">
+            Invite you to celebrate their wedding
+          </p>
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+        {backgroundImages.map((_, index) => (
+          <div
+            key={index}
+            className={`h-1 rounded-full transition-all ${
+              index === currentImageIndex ? "w-8 bg-warm-bg" : "w-2 bg-warm-bg/50"
+            }`}
+          />
+        ))}
+      </div>
+    </section>
   );
 }

@@ -2,9 +2,9 @@
 import { useState, useEffect } from "react";
 
 const backgroundImages = [
-  "/images/hero-bg-1.jpg", // Replace with your actual image paths
-  "/images/hero-bg-2.jpg",
-  "/images/hero-bg-3.jpg",
+  "/images/hero-bg-1.JPG", // Changed to uppercase JPG
+  "/images/hero-bg-2.JPG", // Changed to uppercase JPG
+  "/images/hero-bg-3.JPG", // Changed to uppercase JPG
 ];
 
 export default function Hero() {

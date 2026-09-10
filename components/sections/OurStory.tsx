@@ -2,28 +2,28 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import Image from "next/image";
 
 const storySections = [
   {
     title: "Where It All Began",
     text: "It all kicked off in 2017 when a workplace intro revealed the ultimate plot twist: we’d actually been running in the exact same neighborhood crew all along! What started as casual work banter quickly turned into late-night talks, endless laughter, and realizing we were standard-issue best friends meant for each other.",
-    photos: ["/images/story1-photo1.jpg", "/images/story1-photo2.jpg", "/images/story1-photo3.jpg"]
+    // Keep the .JPG uppercase to match your Vercel assets
+    photos: ["/images/story1-photo1.JPG", "/images/story1-photo2.JPG", "/images/story1-photo3.JPG"]
   },
   {
     title: "Our Favorite Adventure",
     text: "Fast forward through years of adventures, favorite memories, and building our life together, which naturally led to our engagement on December 2, 2025 in Japan—our all-time favorite destination!",
-    photos: ["/images/story2-photo1.jpg", "/images/story2-photo2.jpg", "/images/story2-photo3.jpg"]
+    photos: ["/images/story2-photo1.JPG", "/images/story2-photo2.JPG", "/images/story2-photo3.JPG"]
   },
   {
     title: "Divine Redirection",
     text: "When our original plan at Minoh Falls was unexpectedly closed, we pivoted to Umeda Sky Tower. But after checking out the crowded top deck, Pao knew we needed something far more personal. We headed down, found a quiet set of bleachers, and shared a peaceful, unscripted moment just for the two of us. He asked, she said yes, and right as we turned around, we saw a small church sitting right beside us—a serene, divine redirection truly designed by God's plan.",
-    photos: ["/images/story3-photo1.jpg", "/images/story3-photo2.jpg", "/images/story3-photo3.jpg"]
+    photos: ["/images/story3-photo1.JPG", "/images/story3-photo2.JPG", "/images/story3-photo3.JPG"]
   },
   {
     title: "The Celebration Begins",
     text: "Now, with hearts full of gratitude for how every step of our journey has unfolded, we feel this is the most beautiful timing to bring all our favorite people together under one roof. On February 21, 2027, we warmly invite you to join us as we celebrate our marriage—a day to share our joy, give thanks for love, family, and faith, and party with the ones who mean the world to us!",
-    photos: ["/images/story4-photo1.jpg", "/images/story4-photo2.jpg", "/images/story4-photo3.jpg"]
+    photos: ["/images/story4-photo1.JPG", "/images/story4-photo2.JPG", "/images/story4-photo3.JPG"]
   }
 ];
 
@@ -47,12 +47,12 @@ function ElegantSlideshow({ photos }: { photos: string[] }) {
   return (
     <div className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden bg-warm-cream rounded-xl">
       
-      {/* Side Images - Lower quality & hidden on mobile to save GPU power */}
+      {/* Side Images */}
       <div 
         className="absolute left-[2%] w-[25%] h-[80%] z-10 opacity-30 overflow-hidden rounded-lg cursor-pointer hidden md:block"
         onClick={prevPhoto}
       >
-        <Image src={photos[getPhotoIndex(-1)]} alt="prev" fill className="object-cover" sizes="25vw" quality={40} />
+        <img src={photos[getPhotoIndex(-1)]} alt="prev" className="w-full h-full object-cover" />
       </div>
 
       <AnimatePresence custom={direction} mode="wait">
@@ -66,14 +66,11 @@ function ElegantSlideshow({ photos }: { photos: string[] }) {
           className="relative w-[85%] md:w-[60%] h-[90%] z-20 shadow-lg overflow-hidden rounded-lg cursor-pointer will-change-transform"
           onClick={nextPhoto}
         >
-          <Image 
+          {/* Standard img tag instead of Next.js Image to bypass 10MB optimization limit */}
+          <img 
             src={photos[currentIndex]} 
             alt="current" 
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 85vw, 60vw"
-            quality={85}
-            priority={currentIndex === 0}
+            className="absolute inset-0 w-full h-full object-cover"
           />
         </motion.div>
       </AnimatePresence>
@@ -82,7 +79,7 @@ function ElegantSlideshow({ photos }: { photos: string[] }) {
         className="absolute right-[2%] w-[25%] h-[80%] z-10 opacity-30 overflow-hidden rounded-lg cursor-pointer hidden md:block"
         onClick={nextPhoto}
       >
-        <Image src={photos[getPhotoIndex(1)]} alt="next" fill className="object-cover" sizes="25vw" quality={40} />
+        <img src={photos[getPhotoIndex(1)]} alt="next" className="w-full h-full object-cover" />
       </div>
       
       <div className="absolute bottom-6 flex gap-2 z-30">
