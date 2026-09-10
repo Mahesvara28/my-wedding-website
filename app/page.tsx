@@ -1,5 +1,9 @@
-import { redirect } from 'next/navigation';
-
 export default function Home() {
-  redirect('/guest');
+  return (
+    <div style={{ padding: '50px', textAlign: 'center' }}>
+      <h1>Pao & Dei</h1>
+      <p>Wedding Website</p>
+      <p style={{ color: 'green' }}>✓ If you see this, routing works!</p>
+    </div>
+  );
 }
