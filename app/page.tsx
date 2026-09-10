@@ -1,6 +1,5 @@
-// This file forces Next.js to load your guest page at the root URL "/"
-import GuestPage from "./guest/page";
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return <GuestPage />;
+  redirect('/guest');
 }
