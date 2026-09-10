@@ -50,7 +50,7 @@ export default function Hero() {
           <div
             key={index}
             className={`h-1 rounded-full transition-all ${
-              index === currentImageIndex ? "w-8 bg-white" : "w-2 bg-white/50"
+              index === currentImageIndex ? "w-8 bg-warm-bg" : "w-2 bg-warm-bg/50"
             }`}
           />
         ))}
