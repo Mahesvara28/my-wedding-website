@@ -43,7 +43,7 @@ export default function Home() {
         <SnowEffect />
         
         {/* The ONE AND ONLY audio element. It stays mounted the whole time. */}
-        <audio ref={audioRef} loop src="/music/wedding-song.mp3" preload="auto" />
+        <audio ref={audioRef} loop src="/Music/wedding-song.mp3" preload="auto" />
         
         <MusicPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} audioRef={audioRef} />
 

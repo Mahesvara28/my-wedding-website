@@ -42,10 +42,10 @@ export default function DressCode() {
             {/* Clickable Image Container */}
             <div 
               className="relative h-[400px] md:h-[500px] group cursor-pointer overflow-hidden"
-              onClick={() => setEnlargedImage("/images/dresscode-sponsors.png")}
+              onClick={() => setEnlargedImage("/images/dresscode-sponsors.PNG")}
             >
               <img 
-                src="/images/dresscode-sponsors.png" 
+                src="/images/dresscode-sponsors.PNG" 
                 alt="Principal Sponsors Attire Inspiration"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -112,10 +112,10 @@ export default function DressCode() {
             {/* Clickable Image Container */}
             <div 
               className="relative h-[400px] md:h-[500px] group cursor-pointer overflow-hidden"
-              onClick={() => setEnlargedImage("/images/dresscode-guests.webp")}
+              onClick={() => setEnlargedImage("/images/dresscode-guests.WEBP")}
             >
               <img 
-                src="/images/dresscode-guests.webp" 
+                src="/images/dresscode-guests.WEBP" 
                 alt="Guests Attire Inspiration"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
