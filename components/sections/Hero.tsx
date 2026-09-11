@@ -7,6 +7,7 @@ const backgroundImages = [
   "/images/hero-bg-3.JPG", // Changed to uppercase JPG
   "/images/hero-bg-4.JPG",
   "/images/hero-bg-5.JPG",
+  "/images/hero-bg-6.JPG",
 ];
 
 export default function Hero() {
