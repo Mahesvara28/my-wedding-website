@@ -14,12 +14,10 @@ export default function Curtain({ children, onOpen }: CurtainProps) {
   const handleLogoClick = () => {
     setIsAnimating(true);
     
-    // Play music IMMEDIATELY when logo is clicked
     if (onOpen) {
       onOpen();
     }
     
-    // Then play the curtain video
     if (videoRef.current) {
       videoRef.current.play();
     }
@@ -43,6 +41,7 @@ export default function Curtain({ children, onOpen }: CurtainProps) {
           playsInline
           muted
           preload="auto"
+          poster="/images/logo.png" 
           onEnded={handleVideoEnd}
         >
           <source src="/videos/curtain.mp4" type="video/mp4" />
