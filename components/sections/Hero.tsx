@@ -7,7 +7,6 @@ const backgroundImages = [
   "/images/hero-bg-3.WEBP", // Changed to uppercase WEBP
   "/images/hero-bg-4.WEBP",
   "/images/hero-bg-5.WEBP",
-  "/images/hero-bg-6.WEBP",
 ];
 
 export default function Hero() {
