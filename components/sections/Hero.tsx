@@ -2,12 +2,12 @@
 import { useState, useEffect } from "react";
 
 const backgroundImages = [
-  "/images/hero-bg-1.JPG", // Changed to uppercase JPG
-  "/images/hero-bg-2.JPG", // Changed to uppercase JPG
-  "/images/hero-bg-3.JPG", // Changed to uppercase JPG
-  "/images/hero-bg-4.JPG",
-  "/images/hero-bg-5.JPG",
-  "/images/hero-bg-6.JPG",
+  "/images/hero-bg-1.WEBP", // Changed to uppercase WEBP
+  "/images/hero-bg-2.WEBP", // Changed to uppercase WEBP
+  "/images/hero-bg-3.WEBP", // Changed to uppercase WEBP
+  "/images/hero-bg-4.WEBP",
+  "/images/hero-bg-5.WEBP",
+  "/images/hero-bg-6.WEBP",
 ];
 
 export default function Hero() {

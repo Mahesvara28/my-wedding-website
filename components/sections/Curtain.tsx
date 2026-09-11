@@ -41,7 +41,7 @@ export default function Curtain({ children, onOpen }: CurtainProps) {
           playsInline
           muted
           preload="auto"
-          poster="/images/logo.png" 
+          // poster="/images/logo.png"  <-- REMOVED THIS LINE
           onEnded={handleVideoEnd}
         >
           <source src="/videos/curtain.mp4" type="video/mp4" />

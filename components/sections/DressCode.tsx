@@ -42,10 +42,10 @@ export default function DressCode() {
             {/* Clickable Image Container - Changed to h-auto to fit image perfectly */}
             <div 
               className="relative w-full group cursor-pointer overflow-hidden"
-              onClick={() => setEnlargedImage("/images/dresscode-sponsors.png")}
+              onClick={() => setEnlargedImage("/images/dresscode-sponsors.webp")}
             >
               <img 
-                src="/images/dresscode-sponsors.png" 
+                src="/images/dresscode-sponsors.webp" 
                 alt="Principal Sponsors Attire Inspiration"
                 className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
               />
@@ -57,14 +57,14 @@ export default function DressCode() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white pointer-events-none">
                 <h3 className="text-3xl font-serif mb-2">Principal Sponsors</h3>
-                <p className="text-sm opacity-90">Ninongs & Ninangs</p>
+                <p className="text-sm opacity-90">Gentlement & Ladies</p>
               </div>
             </div>
 
             {/* Role-Specific Details & Palettes */}
             <div className="p-8 space-y-8">
               <div className="text-center">
-                <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Ninongs</p>
+                <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Gentlemen</p>
                 <p className="text-lg text-warm-dark font-serif mb-4">Charcoal Gray Suit with Black Tie</p>
                 <div className="flex justify-center gap-4">
                   <div className="flex flex-col items-center gap-2">
@@ -81,7 +81,7 @@ export default function DressCode() {
               <div className="w-full h-px bg-warm-beige/50" />
 
               <div className="text-center">
-                <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Ninangs</p>
+                <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Ladies</p>
                 <p className="text-lg text-warm-dark font-serif mb-4">Long Dark Green or Emerald Gowns</p>
                 <div className="flex justify-center gap-4">
                   <div className="flex flex-col items-center gap-2">
@@ -108,10 +108,10 @@ export default function DressCode() {
             {/* Clickable Image Container - Changed to h-auto to fit image perfectly */}
             <div 
               className="relative w-full group cursor-pointer overflow-hidden"
-              onClick={() => setEnlargedImage("/images/dresscode-guests.png")}
+              onClick={() => setEnlargedImage("/images/dresscode-guests.webp")}
             >
               <img 
-                src="/images/dresscode-guests.png" 
+                src="/images/dresscode-guests.webp" 
                 alt="Guests Attire Inspiration"
                 className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
               />
