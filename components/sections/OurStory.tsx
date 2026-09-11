@@ -8,22 +8,22 @@ const storySections = [
     title: "Where It All Began",
     text: "It all kicked off in 2017 when a workplace intro revealed the ultimate plot twist: we’d actually been running in the exact same neighborhood crew all along! What started as casual work banter quickly turned into late-night talks, endless laughter, and realizing we were standard-issue best friends meant for each other.",
     // Keep the .JPG uppercase to match your Vercel assets
-    photos: ["/images/story1-photo1.JPG", "/images/story1-photo2.JPG", "/images/story1-photo3.JPG"]
+    photos: ["/images/story1-photo1.JPG", "/images/story1-photo2.JPG", "/images/story1-photo3.JPG", "/images/story1-photo4.JPG", "/images/story1-photo5.JPG"]
   },
   {
     title: "Our Favorite Adventure",
     text: "Fast forward through years of adventures, favorite memories, and building our life together, which naturally led to our engagement on December 2, 2025 in Japan—our all-time favorite destination!",
-    photos: ["/images/story2-photo1.JPG", "/images/story2-photo2.JPG", "/images/story2-photo3.JPG"]
+    photos: ["/images/story2-photo1.JPG", "/images/story2-photo2.JPG", "/images/story2-photo3.JPG", "/images/story2-photo4.JPG", "/images/story2-photo5.JPG"]
   },
   {
     title: "Divine Redirection",
     text: "When our original plan at Minoh Falls was unexpectedly closed, we pivoted to Umeda Sky Tower. But after checking out the crowded top deck, Pao knew we needed something far more personal. We headed down, found a quiet set of bleachers, and shared a peaceful, unscripted moment just for the two of us. He asked, she said yes, and right as we turned around, we saw a small church sitting right beside us—a serene, divine redirection truly designed by God's plan.",
-    photos: ["/images/story3-photo1.JPG", "/images/story3-photo2.JPG", "/images/story3-photo3.JPG"]
+    photos: ["/images/story3-photo1.JPG", "/images/story3-photo2.JPG", "/images/story3-photo3.JPG", "/images/story3-photo4.JPG", "/images/story3-photo5.JPG"]
   },
   {
     title: "The Celebration Begins",
     text: "Now, with hearts full of gratitude for how every step of our journey has unfolded, we feel this is the most beautiful timing to bring all our favorite people together under one roof. On February 21, 2027, we warmly invite you to join us as we celebrate our marriage—a day to share our joy, give thanks for love, family, and faith, and party with the ones who mean the world to us!",
-    photos: ["/images/story4-photo1.JPG", "/images/story4-photo2.JPG", "/images/story4-photo3.JPG"]
+    photos: ["/images/story4-photo1.JPG", "/images/story4-photo2.JPG", "/images/story4-photo3.JPG", "/images/story4-photo4.JPG", "/images/story4-photo5.JPG"]
   }
 ];
 

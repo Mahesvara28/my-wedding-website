@@ -12,6 +12,7 @@ import DressCode from "@/components/sections/DressCode";
 import OurStory from "@/components/sections/OurStory";
 import Sponsors from "@/components/sections/Sponsors";
 import SnowEffect from "@/components/effects/SnowEffect";
+import FAQs from "@/components/sections/FAQs";
 
 const Divider = () => (
   <div className="w-full flex justify-center py-4 bg-warm-bg">
@@ -91,7 +92,14 @@ export default function Home() {
 
         <Divider />
 
-        {/* SECTION 8: RSVP */}
+          <Divider />
+
+        {/* SECTION 8: FAQs */}
+        <FAQs />
+
+        <Divider />
+
+        {/* SECTION 9: RSVP */}
         <section className="min-h-screen w-full flex items-center justify-center relative overflow-hidden px-4 py-20">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none select-none">
             <h2 className="text-[12rem] md:text-[25rem] font-serif uppercase leading-none text-warm-dark">RSVP</h2>
@@ -105,7 +113,7 @@ export default function Home() {
         <footer className="min-h-[50vh] w-full flex flex-col items-center justify-center px-4 py-20 bg-warm-bg">
           <ScrollReveal variant="scale">
             <div className="text-center space-y-6">
-              <h3 className="text-7xl font-serif text-warm-accent tracking-tighter">P & D</h3>
+              <h3 className="text-7xl font-serif text-warm-accent tracking-tighter">Pao And Dei</h3>
               <div className="h-16 w-[1px] bg-warm-beige mx-auto" />
               <p className="text-warm-dark text-[10px] tracking-[0.5em] uppercase font-sans">See you in Manila &bull; 2027</p>
             </div>

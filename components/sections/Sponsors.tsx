@@ -76,7 +76,7 @@ export default function Sponsors() {
                 <div>
                   <p className="text-warm-dark font-semibold mb-1">Groom's Men</p>
                   <ul className="text-warm-dark space-y-1 list-none">
-                    <li>Domingo Jangayo Jr.</li><li>Bryan Elauria</li><li>Paolo Sibulo</li>
+                    <li>Inigo Katindig.</li><li>Bryan Elauria</li><li>Paolo Sibulo</li>
                     <li>Juan Paolo Macatangay</li><li>Erik Katindig</li><li>David Apolonio</li><li>Third Katindig</li>
                   </ul>
                 </div>
@@ -88,15 +88,15 @@ export default function Sponsors() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <ScrollReveal variant="fadeUp" delay={0.1}>
             <h3 className="text-xl font-serif text-warm-accent mb-4">Candle Sponsors</h3>
-            <div className="text-center"><p className="text-warm-dark">Bradley Dorotheo</p><p className="text-warm-accent italic">&</p><p className="text-warm-dark">Reichelle Dela Cruz</p></div>
+            <div className="text-center"><p className="text-warm-dark">Domingo Jangayo Jr</p><p className="text-warm-accent italic">&</p><p className="text-warm-dark">Reichelle Dela Cruz</p></div>
           </ScrollReveal>
           <ScrollReveal variant="fadeUp" delay={0.2}>
             <h3 className="text-xl font-serif text-warm-accent mb-4">Veil Sponsors</h3>
-            <div className="text-center"><p className="text-warm-dark">Daryl Dick Jangayo</p><p className="text-warm-accent italic">&</p><p className="text-warm-dark">Alyanna Apolonio</p></div>
+            <div className="text-center"><p className="text-warm-dark">Daryl Dick Jangayo</p><p className="text-warm-accent italic">&</p><p className="text-warm-dark">Maria Rich Elauria</p></div>
           </ScrollReveal>
           <ScrollReveal variant="fadeUp" delay={0.3}>
             <h3 className="text-xl font-serif text-warm-accent mb-4">Cord Sponsors</h3>
-            <div className="text-center"><p className="text-warm-dark">Inigo Calalang</p><p className="text-warm-accent italic">&</p><p className="text-warm-dark">Chie Elauria</p></div>
+            <div className="text-center"><p className="text-warm-dark">Charles Jude Bato</p><p className="text-warm-accent italic">&</p><p className="text-warm-dark">Alyanna Apolonio</p></div>
           </ScrollReveal>
         </div>
 

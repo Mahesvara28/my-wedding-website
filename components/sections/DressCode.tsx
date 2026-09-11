@@ -39,15 +39,15 @@ export default function DressCode() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="bg-warm-cream rounded-lg overflow-hidden shadow-lg border border-warm-beige/30"
           >
-            {/* Clickable Image Container */}
+            {/* Clickable Image Container - Changed to h-auto to fit image perfectly */}
             <div 
-              className="relative h-[400px] md:h-[500px] group cursor-pointer overflow-hidden"
+              className="relative w-full group cursor-pointer overflow-hidden"
               onClick={() => setEnlargedImage("/images/dresscode-sponsors.png")}
             >
               <img 
                 src="/images/dresscode-sponsors.png" 
                 alt="Principal Sponsors Attire Inspiration"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 p-4 rounded-full shadow-xl transform scale-75 group-hover:scale-100">
@@ -57,16 +57,14 @@ export default function DressCode() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white pointer-events-none">
                 <h3 className="text-3xl font-serif mb-2">Principal Sponsors</h3>
-                <p className="text-sm opacity-90">Gentlemen & Ladies</p>
+                <p className="text-sm opacity-90">Ninongs & Ninangs</p>
               </div>
             </div>
 
             {/* Role-Specific Details & Palettes */}
             <div className="p-8 space-y-8">
-              
-              {/* Ninongs */}
               <div className="text-center">
-                <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Gentlemen</p>
+                <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Ninongs</p>
                 <p className="text-lg text-warm-dark font-serif mb-4">Charcoal Gray Suit with Black Tie</p>
                 <div className="flex justify-center gap-4">
                   <div className="flex flex-col items-center gap-2">
@@ -82,22 +80,20 @@ export default function DressCode() {
 
               <div className="w-full h-px bg-warm-beige/50" />
 
-              {/* Ladies */}
               <div className="text-center">
-                <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Ladies</p>
-                <p className="text-lg text-warm-dark font-serif mb-4">Long Dark Green or Olive Gowns</p>
+                <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Ninangs</p>
+                <p className="text-lg text-warm-dark font-serif mb-4">Long Dark Green or Emerald Gowns</p>
                 <div className="flex justify-center gap-4">
                   <div className="flex flex-col items-center gap-2">
-                    <div className="w-10 h-10 rounded-full bg-[#2F4F2F] shadow-md border-2 border-white" />
-                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Dark Green</span>
+                    <div className="w-10 h-10 rounded-full bg-[#1B3D2E] shadow-md border-2 border-white" />
+                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Deep Forest</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
-                    <div className="w-10 h-10 rounded-full bg-[#5A6B4A] shadow-md border-2 border-white" />
-                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Olive</span>
+                    <div className="w-10 h-10 rounded-full bg-[#064E3B] shadow-md border-2 border-white" />
+                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Dark Emerald</span>
                   </div>
                 </div>
               </div>
-
             </div>
           </motion.div>
 
@@ -109,15 +105,15 @@ export default function DressCode() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="bg-white rounded-lg overflow-hidden shadow-lg border border-warm-beige/30"
           >
-            {/* Clickable Image Container */}
+            {/* Clickable Image Container - Changed to h-auto to fit image perfectly */}
             <div 
-              className="relative h-[400px] md:h-[500px] group cursor-pointer overflow-hidden"
-              onClick={() => setEnlargedImage("/images/dresscode-guests.webp")}
+              className="relative w-full group cursor-pointer overflow-hidden"
+              onClick={() => setEnlargedImage("/images/dresscode-guests.png")}
             >
               <img 
-                src="/images/dresscode-guests.webp" 
+                src="/images/dresscode-guests.png" 
                 alt="Guests Attire Inspiration"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 p-4 rounded-full shadow-xl transform scale-75 group-hover:scale-100">
@@ -133,8 +129,6 @@ export default function DressCode() {
 
             {/* Role-Specific Details & Palettes */}
             <div className="p-8 space-y-8">
-              
-              {/* Gentlemen */}
               <div className="text-center">
                 <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Gentlemen</p>
                 <p className="text-lg text-warm-dark font-serif mb-4">Black Suit with Black Tie</p>
@@ -143,29 +137,29 @@ export default function DressCode() {
                     <div className="w-10 h-10 rounded-full bg-[#1A1A1A] shadow-md border-2 border-white" />
                     <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Black</span>
                   </div>
-                  <div className="flex flex-col items-center gap-2">
-                  </div>
                 </div>
               </div>
 
               <div className="w-full h-px bg-warm-beige/50" />
 
-              {/* Ladies */}
               <div className="text-center">
                 <p className="text-sm uppercase tracking-widest text-warm-accent mb-2">Ladies</p>
                 <p className="text-lg text-warm-dark font-serif mb-4">Terracotta, Rust, or Earthy Shades</p>
                 <div className="flex justify-center gap-4">
                   <div className="flex flex-col items-center gap-2">
-                    <div className="w-10 h-10 rounded-full bg-[#E07A5F] shadow-md border-2 border-white" />
-                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Terracotta</span>
+                    <div className="w-10 h-10 rounded-full bg-[#A0522D] shadow-md border-2 border-white" />
+                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Rust & Copper</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
-                    <div className="w-10 h-10 rounded-full bg-[#C49A8A] shadow-md border-2 border-white" />
-                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Rust</span>
+                    <div className="w-10 h-10 rounded-full bg-[#B87333] shadow-md border-2 border-white" />
+                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Spice & Earth</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-10 h-10 rounded-full bg-[#CC5500] shadow-md border-2 border-white" />
+                    <span className="text-[10px] uppercase tracking-wide text-warm-dark font-medium">Burnt Orange</span>
                   </div>
                 </div>
               </div>
-
             </div>
           </motion.div>
         </div>

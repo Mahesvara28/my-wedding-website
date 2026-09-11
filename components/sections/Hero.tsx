@@ -5,6 +5,8 @@ const backgroundImages = [
   "/images/hero-bg-1.JPG", // Changed to uppercase JPG
   "/images/hero-bg-2.JPG", // Changed to uppercase JPG
   "/images/hero-bg-3.JPG", // Changed to uppercase JPG
+  "/images/hero-bg-4.JPG",
+  "/images/hero-bg-5.JPG",
 ];
 
 export default function Hero() {
@@ -37,7 +39,7 @@ export default function Hero() {
       <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
         <div>
           <h1 className="text-6xl md:text-8xl font-serif mb-6 drop-shadow-lg">
-            Paolo & Daisy
+            Pao And Dei
           </h1>
           <p className="text-xl md:text-2xl tracking-[0.2em] font-sans font-light drop-shadow-lg">
             Invite you to celebrate their wedding
