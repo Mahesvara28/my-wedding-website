@@ -42,9 +42,9 @@ export default function DressCode() {
           >
             <div 
               className="relative w-full group cursor-pointer overflow-hidden"
-              onClick={() => setEnlargedImage("/images/dresscode-sponsors.webp")}
+             onClick={() => setEnlargedImage("/images/dresscode-sponsors.jpg?v=2")}
             >
-              <img src="/images/dresscode-sponsors.webp" alt="Principal Sponsors" className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" />
+              <img src="/images/dresscode-sponsors.jpg?v=2" alt="Principal Sponsors" className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 p-4 rounded-full shadow-xl transform scale-75 group-hover:scale-100">
                   <ZoomIn className="w-6 h-6 text-warm-dark" />
@@ -100,9 +100,9 @@ export default function DressCode() {
           >
             <div 
               className="relative w-full group cursor-pointer overflow-hidden"
-              onClick={() => setEnlargedImage("/images/dresscode-guests.webp")}
+              onClick={() => setEnlargedImage("/images/dresscode-guests.jpg?v=2")}
             >
-              <img src="/images/dresscode-guests.webp" alt="Guests Attire" className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" />
+              <img src="/images/dresscode-guests.jpg?v=2" alt="Guests Attire" className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 p-4 rounded-full shadow-xl transform scale-75 group-hover:scale-100">
                   <ZoomIn className="w-6 h-6 text-warm-dark" />
