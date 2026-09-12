@@ -21,7 +21,7 @@ export default function Hero() {
   }, []);
 
   return (
-<section className="relative min-h-screen w-full overflow-hidden">
+    <section className="relative h-[100svh] w-full overflow-hidden bg-[#2C2420]">
       {backgroundImages.map((src, index) => (
         <div
           key={index}
@@ -29,35 +29,34 @@ export default function Hero() {
             index === currentImageIndex ? "opacity-100" : "opacity-0"
           }`}
         >
+          {/* Blurred background to fill space */}
+          <img
+            src={src}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover blur-2xl scale-125 opacity-60"
+          />
+          
+          {/* Main image */}
           <img
             src={src}
             alt={`Hero background ${index + 1}`}
-            className="absolute inset-0 w-full h-full object-contain md:object-cover"
+            className="absolute inset-0 w-full h-full object-contain object-center"
           />
+          
+          {/* Dark overlay */}
           <div className="absolute inset-0 bg-black/30" />
         </div>
       ))}
 
-      <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
-        <div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-script mb-4 md:mb-6 drop-shadow-lg text-warm-cream">
-            Pao And Dei
-          </h1>
-
-          <p className="text-base md:text-xl lg:text-2xl tracking-[0.2em] font-serif font-light drop-shadow-lg px-2">
-            Invite you to celebrate their wedding
-          </p>
-        </div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+      {/* Pagination dots only */}
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-1.5 sm:gap-2">
         {backgroundImages.map((_, index) => (
           <div
             key={index}
-            className={`h-1 rounded-full transition-all ${
+            className={`h-1 rounded-full transition-all duration-500 ${
               index === currentImageIndex
-                ? "w-8 bg-warm-bg"
-                : "w-2 bg-warm-bg/50"
+                ? "w-7 sm:w-8 bg-warm-bg"
+                : "w-1.5 sm:w-2 bg-warm-bg/50"
             }`}
           />
         ))}
