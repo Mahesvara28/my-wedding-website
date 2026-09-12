@@ -1,8 +1,9 @@
 "use client";
 import { useState, useRef } from "react";
-import Welcome from "@/components/sections/Welcome"; // <-- Added this
+import Welcome from "@/components/sections/Welcome";
 import Hero from "@/components/sections/Hero";
 import ScratchDate from "@/components/sections/ScratchDate";
+import Gallery from "@/components/sections/Gallery"; // <-- 1. Added Gallery Import
 import Details from "@/components/sections/Details";
 import Countdown from "@/components/sections/Countdown";
 import RSVPForm from "@/components/sections/RSVPForm";
@@ -62,7 +63,12 @@ export default function Home() {
 
         <Divider />
 
-        {/* SECTION 4: COUNTDOWN */}
+        {/* SECTION 4: GALLERY (Your 13 leftover pics) */}
+        <Gallery />
+
+        <Divider />
+
+        {/* SECTION 5: COUNTDOWN */}
         <section className="min-h-screen w-full flex flex-col items-center justify-center px-4 py-20">
           <ScrollReveal variant="fadeUp">
             <Countdown />
@@ -71,38 +77,38 @@ export default function Home() {
 
         <Divider />
 
-        {/* SECTION 5: OUR STORY */}
+        {/* SECTION 6: OUR STORY */}
         <OurStory />
 
         <Divider />
 
-        {/* SECTION 6: SPONSORS */}
+        {/* SECTION 7: SPONSORS */}
         <ScrollReveal variant="slideRight">
           <Sponsors />
         </ScrollReveal>
 
         <Divider />
 
-        {/* SECTION 7: DETAILS */}
+        {/* SECTION 8: DETAILS */}
         <ScrollReveal variant="slideLeft">
           <Details />
         </ScrollReveal>
 
         <Divider />
 
-        {/* SECTION 8: DRESS CODE */}
+        {/* SECTION 9: DRESS CODE */}
         <ScrollReveal variant="scale">
           <DressCode />
         </ScrollReveal>
 
         <Divider />
 
-        {/* SECTION 9: FAQs */}
+        {/* SECTION 10: FAQs */}
         <FAQs />
 
         <Divider />
 
-        {/* SECTION 10: RSVP */}
+        {/* SECTION 11: RSVP */}
         <section className="min-h-screen w-full flex items-center justify-center relative overflow-hidden px-4 py-20">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none select-none">
             <h2 className="text-[12rem] md:text-[25rem] font-serif uppercase leading-none text-warm-dark">
@@ -121,7 +127,7 @@ export default function Home() {
           <ScrollReveal variant="scale">
             <div className="text-center space-y-6">
               <h3 className="text-7xl font-script text-warm-accent tracking-tighter">
-                Pao And Dei
+                Pao & Dei
               </h3>
               <div className="h-16 w-[1px] bg-warm-beige mx-auto" />
               <p className="text-warm-dark text-[10px] tracking-[0.5em] uppercase font-sans">

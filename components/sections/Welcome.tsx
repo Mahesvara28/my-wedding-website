@@ -20,7 +20,7 @@ export default function Welcome() {
         <div className="w-16 h-[1px] bg-warm-accent mx-auto mb-8" />
         
         <h1 className="font-script text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-warm-dark mb-4 sm:mb-6 drop-shadow-sm">
-          Pao And Dei
+          Pao & Dei
         </h1>
         
         <p className="font-serif font-light text-sm sm:text-base md:text-xl lg:text-2xl text-warm-dark/80 tracking-[0.2em] sm:tracking-[0.3em] px-4">

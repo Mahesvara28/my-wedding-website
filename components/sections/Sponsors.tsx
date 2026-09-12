@@ -37,10 +37,10 @@ export default function Sponsors() {
             {[
               ["Tristana Umali", "Atty. Al Matthew Umali"],
               ["Rosario Carla Dionisio", "Atty. Lorenze Angelo Dionisio"],
-              ["Lanie Funtanilla", "Boy Funtanilla"],
+              ["Lanie Funtanilla", "Claro Funtanilla"],
               ["Kathryn Joyce Cabochan", "Charlie Rodriguez"],
               ["Cleo Alvero", "Edgar Tordesillas"],
-              ["Maria Lourdes Violeta Mc. Gaerlan", "German Maravilla"],
+              ["Maria Lourdes Violeta Gaerlan", "German Maravilla"],
               ["Mary Ann Mendoza", "Alberto Gochangco"]
             ].map((couple, i) => (
               <div key={i} className="text-center">
