@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,22 +15,62 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  /* Removes the gray tap highlight on mobile phones for a cleaner, app-like feel */
+  -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html {
   width: 100%;
   overflow-x: hidden;
-  background-color: #F2EBE1; /* Matches the new warm-bg */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  /* Prevents the "pull-to-refresh" bounce on mobile, making it feel like a native app */
+  overscroll-behavior-y: none;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #F2EBE1;
   color: var(--foreground);
+  /* Enables smooth scrolling when clicking anchor links */
+  scroll-behavior: smooth;
+}
+
+/* ==========================================
+   MOBILE & TOUCH OPTIMIZATIONS
+   ========================================== */
+
+/* 1. Prevents iOS Safari from auto-zooming when tapping into an input field */
+input, textarea, select {
+  font-size: 16px !important;
+}
+
+/* 2. Removes the 300ms double-tap zoom delay on buttons and links */
+button, a, [role="button"] {
+  touch-action: manipulation;
+}
+
+/* ==========================================
+   FONT OVERRIDES
+   ========================================== */
+
+.font-script {
+  font-family: var(--font-pinyon), cursive !important;
 }
 
 .font-serif {
-  font-family: 'Cormorant Garamond', serif !important;
+  font-family: var(--font-cormorant), serif !important;
 }
 
 .font-sans {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: var(--font-montserrat), sans-serif !important;
 }
+
+/* ==========================================
+   SCROLLBAR HIDING
+   ========================================== */
 
 ::-webkit-scrollbar {
   display: none;
@@ -40,12 +78,15 @@ html, body {
   background: transparent;
 }
 
-html {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+/* ==========================================
+   ANIMATIONS
+   ========================================== */
 
 @keyframes fall {
-  0% { transform: translateY(-10vh); }
-  100% { transform: translateY(110vh); }
+  0% {
+    transform: translateY(-10vh);
+  }
+  100% {
+    transform: translateY(110vh);
+  }
 }

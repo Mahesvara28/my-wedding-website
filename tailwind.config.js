@@ -1,16 +1,14 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  ], // <-- Fixed: Added missing closing bracket here
   theme: {
     extend: {
       colors: {
-        // Soft, warm light beige (Perfect middle ground)
         "warm-bg": "#F2EBE1", 
-        // Slightly lighter cream for cards so they still pop
         "warm-cream": "#FAF6F0", 
         "warm-beige": "#E6DFD3",
         "warm-accent": "#A67B5B",
@@ -18,10 +16,13 @@ module.exports = {
         "warm-terracotta": "#C49A8A",
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'serif'],
-        sans: ['"Montserrat"', 'sans-serif'],
+        script: ["var(--font-pinyon)", "cursive"], // Calligraphic/Formal Script for Names
+        serif: ["var(--font-cormorant)", "serif"], // Traditional Serif for details
+        sans: ["var(--font-montserrat)", "sans-serif"], // Clean sans for small text
       },
     },
   },
   plugins: [],
 };
+
+export default config;

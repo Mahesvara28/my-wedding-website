@@ -82,10 +82,12 @@ export default function RSVPForm() {
         animate={{ opacity: 1, scale: 1 }}
         className="text-center p-10 bg-warm-cream/90 backdrop-blur-md rounded-3xl shadow-2xl border border-warm-beige/50"
       >
-        <h2 className="text-4xl font-serif text-warm-dark mb-4">
+        {/* Changed to font-script for elegant heading */}
+        <h2 className="text-5xl md:text-6xl font-script text-warm-dark mb-4">
           Thank You!
         </h2>
-        <p className="text-warm-dark/80 font-sans">
+        {/* Changed to font-serif for timeless detail text */}
+        <p className="text-warm-dark/80 font-serif text-lg">
           Your RSVP has been received. We can't wait to celebrate with you!
         </p>
       </motion.div>
@@ -103,23 +105,26 @@ export default function RSVPForm() {
           onSubmit={handleSubmit}
           className="bg-warm-cream/90 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-warm-beige/50"
         >
-          <h2 className="text-4xl font-serif text-center mb-2 text-warm-dark">
+          {/* Changed to font-script for main focal heading */}
+          <h2 className="text-6xl md:text-7xl font-script text-center mb-2 text-warm-dark">
             RSVP
           </h2>
-          <p className="text-warm-dark/60 text-center mb-8 italic font-sans text-sm">
+          {/* Changed to font-serif for elegant subtitle */}
+          <p className="text-warm-dark/60 text-center mb-8 font-serif text-lg italic">
             Please let us know if you can make it
           </p>
 
           {/* Full Name Input */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-warm-dark mb-2 text-left font-sans">
+            {/* Updated label to elegant uppercase sans-serif */}
+            <label className="block text-xs uppercase tracking-widest font-sans text-warm-accent mb-2 text-left">
               Full Name *
             </label>
             <input
               type="text"
               required
               autoCapitalize="words"
-              className="w-full p-4 rounded-xl border border-warm-beige/50 mb-2 text-warm-dark outline-none focus:ring-2 focus:ring-warm-accent bg-white/50 placeholder-warm-dark/30 transition-all"
+              className="w-full p-4 rounded-xl border border-warm-beige/50 mb-2 text-warm-dark font-serif outline-none focus:ring-2 focus:ring-warm-accent bg-white/50 placeholder-warm-dark/40 transition-all"
               placeholder="e.g., Juan Dela Cruz"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
@@ -128,14 +133,14 @@ export default function RSVPForm() {
 
           {/* Attending Buttons */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-warm-dark mb-3 text-left font-sans">
+            <label className="block text-xs uppercase tracking-widest font-sans text-warm-accent mb-3 text-left">
               Will you be attending? *
             </label>
             <div className="flex gap-4">
               <button
                 type="button"
                 onClick={() => setAttending(true)}
-                className={`flex-1 p-4 rounded-xl border-2 transition-all font-medium font-sans ${
+                className={`flex-1 p-4 rounded-xl border-2 transition-all font-sans uppercase tracking-wider text-sm font-medium ${
                   attending === true
                     ? "border-warm-accent bg-warm-accent/10 text-warm-accent"
                     : "border-warm-beige/50 text-warm-dark/60 hover:border-warm-accent/50"
@@ -146,7 +151,7 @@ export default function RSVPForm() {
               <button
                 type="button"
                 onClick={() => setAttending(false)}
-                className={`flex-1 p-4 rounded-xl border-2 transition-all font-medium font-sans ${
+                className={`flex-1 p-4 rounded-xl border-2 transition-all font-sans uppercase tracking-wider text-sm font-medium ${
                   attending === false
                     ? "border-warm-dark bg-warm-dark/10 text-warm-dark"
                     : "border-warm-beige/50 text-warm-dark/60 hover:border-warm-dark/50"
@@ -167,12 +172,12 @@ export default function RSVPForm() {
                 className="overflow-hidden"
               >
                 <div className="mb-6">
-                  <label className="block text-sm font-medium text-warm-dark mb-2 text-left font-sans">
+                  <label className="block text-xs uppercase tracking-widest font-sans text-warm-accent mb-2 text-left">
                     Dietary Restrictions
                   </label>
                   <input
                     type="text"
-                    className="w-full p-4 rounded-xl border border-warm-beige/50 bg-white/50 text-warm-dark outline-none focus:ring-2 focus:ring-warm-accent placeholder-warm-dark/30 transition-all"
+                    className="w-full p-4 rounded-xl border border-warm-beige/50 bg-white/50 text-warm-dark font-serif outline-none focus:ring-2 focus:ring-warm-accent placeholder-warm-dark/40 transition-all"
                     placeholder="Allergies, vegetarian, etc. (Optional)"
                     value={dietary}
                     onChange={(e) => setDietary(e.target.value)}
@@ -180,12 +185,12 @@ export default function RSVPForm() {
                 </div>
 
                 <div className="mb-8">
-                  <label className="block text-sm font-medium text-warm-dark mb-2 text-left font-sans">
+                  <label className="block text-xs uppercase tracking-widest font-sans text-warm-accent mb-2 text-left">
                     Song Request
                   </label>
                   <input
                     type="text"
-                    className="w-full p-4 rounded-xl border border-warm-beige/50 bg-white/50 text-warm-dark outline-none focus:ring-2 focus:ring-warm-accent placeholder-warm-dark/30 transition-all"
+                    className="w-full p-4 rounded-xl border border-warm-beige/50 bg-white/50 text-warm-dark font-serif outline-none focus:ring-2 focus:ring-warm-accent placeholder-warm-dark/40 transition-all"
                     placeholder="What will get you on the dance floor?"
                     value={song}
                     onChange={(e) => setSong(e.target.value)}
@@ -199,7 +204,7 @@ export default function RSVPForm() {
           <button
             type="submit"
             disabled={loading || attending === null || !fullName.trim()}
-            className="w-full bg-warm-accent text-white p-4 rounded-xl font-medium hover:bg-[#8b6a4f] disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-[0.98] shadow-md font-sans"
+            className="w-full bg-warm-accent text-white p-4 rounded-xl font-sans uppercase tracking-widest text-sm font-medium hover:bg-[#8b6a4f] disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-[0.98] shadow-md"
           >
             {loading ? "Sending..." : "Send RSVP"}
           </button>

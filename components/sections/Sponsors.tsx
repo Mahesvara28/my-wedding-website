@@ -76,7 +76,7 @@ export default function Sponsors() {
                 <div>
                   <p className="text-warm-dark font-semibold mb-1">Groom's Men</p>
                   <ul className="text-warm-dark space-y-1 list-none">
-                    <li>Inigo Katindig.</li><li>Bryan Elauria</li><li>Paolo Sibulo</li>
+                    <li>Inigo Calalang.</li><li>Bryan Elauria</li><li>Paolo Sibulo</li>
                     <li>Juan Paolo Macatangay</li><li>Erik Katindig</li><li>David Apolonio</li><li>Third Katindig</li>
                   </ul>
                 </div>

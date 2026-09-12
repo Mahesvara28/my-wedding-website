@@ -41,10 +41,13 @@ export default function FAQs() {
             <span className="text-[10px] uppercase tracking-[0.5em] text-warm-accent block mb-4 font-sans">
               Information
             </span>
-            <h2 className="text-5xl md:text-6xl font-serif text-warm-dark tracking-tighter mb-6">
+
+            <h2 className="text-5xl md:text-6xl font-script text-warm-dark tracking-tighter mb-6">
               FAQs
             </h2>
+
             <div className="w-16 h-[1px] bg-warm-beige mx-auto mb-8" />
+
             <p className="text-lg text-warm-dark/80 font-serif italic">
               We are so excited to celebrate with you! To help you plan for our big day, we&apos;ve put together answers to a few common questions.
             </p>
@@ -57,6 +60,7 @@ export default function FAQs() {
                   <h3 className="text-xl md:text-2xl font-serif text-warm-dark mb-4">
                     {faq.question}
                   </h3>
+
                   <p className="text-warm-dark/70 text-base md:text-lg font-sans leading-relaxed">
                     {faq.answer}
                   </p>

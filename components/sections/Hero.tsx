@@ -7,6 +7,7 @@ const backgroundImages = [
   "/images/hero-bg-3.webp?v=3",
   "/images/hero-bg-4.webp?v=3",
   "/images/hero-bg-5.webp?v=3",
+  "/images/hero-bg-6.webp?v=3",
 ];
 
 export default function Hero() {
@@ -20,7 +21,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+<section className="relative min-h-screen w-full overflow-hidden">
       {backgroundImages.map((src, index) => (
         <div
           key={index}
@@ -28,9 +29,10 @@ export default function Hero() {
             index === currentImageIndex ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${src})` }}
+          <img
+            src={src}
+            alt={`Hero background ${index + 1}`}
+            className="absolute inset-0 w-full h-full object-contain md:object-cover"
           />
           <div className="absolute inset-0 bg-black/30" />
         </div>
@@ -38,10 +40,11 @@ export default function Hero() {
 
       <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
         <div>
-          <h1 className="text-6xl md:text-8xl font-serif mb-6 drop-shadow-lg">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-script mb-4 md:mb-6 drop-shadow-lg text-warm-cream">
             Pao And Dei
           </h1>
-          <p className="text-xl md:text-2xl tracking-[0.2em] font-sans font-light drop-shadow-lg">
+
+          <p className="text-base md:text-xl lg:text-2xl tracking-[0.2em] font-serif font-light drop-shadow-lg px-2">
             Invite you to celebrate their wedding
           </p>
         </div>
@@ -52,7 +55,9 @@ export default function Hero() {
           <div
             key={index}
             className={`h-1 rounded-full transition-all ${
-              index === currentImageIndex ? "w-8 bg-warm-bg" : "w-2 bg-warm-bg/50"
+              index === currentImageIndex
+                ? "w-8 bg-warm-bg"
+                : "w-2 bg-warm-bg/50"
             }`}
           />
         ))}
