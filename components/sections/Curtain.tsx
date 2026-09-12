@@ -13,12 +13,8 @@ export default function Curtain({ children, onOpen }: CurtainProps) {
 
   const handleLogoClick = async () => {
     if (isAnimating) return;
-    
     setIsAnimating(true);
-    
-    if (onOpen) {
-      onOpen();
-    }
+    if (onOpen) onOpen();
 
     const video = videoRef.current;
     if (!video) {
@@ -35,10 +31,7 @@ export default function Curtain({ children, onOpen }: CurtainProps) {
     }
   };
 
-  const handleVideoEnd = () => {
-    setIsComplete(true);
-  };
-
+  const handleVideoEnd = () => setIsComplete(true);
   const handleVideoError = () => {
     console.error("Curtain video failed to load");
     setIsComplete(true);
@@ -51,21 +44,19 @@ export default function Curtain({ children, onOpen }: CurtainProps) {
           isComplete ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
-        {/* Video with aggressive preload */}
+        {/* Video - REMOVED poster attribute so it doesn't stretch the logo */}
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
           playsInline
           muted
           preload="auto"
-          poster="/images/logo.png"
           onEnded={handleVideoEnd}
           onError={handleVideoError}
         >
           <source src="/videos/curtain.mp4" type="video/mp4" />
         </video>
 
-        {/* Logo Overlay - shown until user clicks */}
         {!isAnimating && (
           <div className="absolute inset-0 flex flex-col items-center justify-center z-30">
             <div 
@@ -85,7 +76,6 @@ export default function Curtain({ children, onOpen }: CurtainProps) {
         )}
       </div>
 
-      {/* Main Content - shown after video ends */}
       <div className={isComplete ? "block" : "hidden"}>
         {children}
       </div>

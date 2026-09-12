@@ -42,7 +42,17 @@ export default function Countdown() {
     timeLeft.secs === 0;
 
   return (
-    <div className="flex flex-wrap gap-4 md:gap-8 justify-center items-center py-12">
+    <div className="flex flex-col items-center justify-center py-12">
+      {/* Added the header */}
+      <motion.p
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-warm-accent font-sans font-medium mb-8 md:mb-12"
+      >
+        The Celebration Begins In
+      </motion.p>
+
       {isWeddingDay ? (
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
