@@ -4,11 +4,7 @@ import { motion } from "framer-motion";
 export default function Welcome() {
   return (
     <section className="relative h-[100svh] w-full flex items-center justify-center bg-warm-bg overflow-hidden">
-      {/* Subtle decorative elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-32 h-32 border border-warm-accent rounded-full" />
-        <div className="absolute bottom-10 right-10 w-48 h-48 border border-warm-accent rounded-full" />
-      </div>
+      {/* Removed the decorative circles */}
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -20,7 +16,7 @@ export default function Welcome() {
         <div className="w-16 h-[1px] bg-warm-accent mx-auto mb-8" />
         
         <h1 className="font-script text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-warm-dark mb-4 sm:mb-6 drop-shadow-sm">
-          Pao & Dei
+          Pao And Dei
         </h1>
         
         <p className="font-serif font-light text-sm sm:text-base md:text-xl lg:text-2xl text-warm-dark/80 tracking-[0.2em] sm:tracking-[0.3em] px-4">
