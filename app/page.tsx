@@ -15,6 +15,7 @@ import OurStory from "@/components/sections/OurStory";
 import Sponsors from "@/components/sections/Sponsors";
 import SnowEffect from "@/components/effects/SnowEffect";
 import FAQs from "@/components/sections/FAQs";
+import Registry from "@/components/sections/Registry"; // <-- Add this
 
 const Divider = () => (
   <div className="w-full flex justify-center py-4 bg-warm-bg">
@@ -102,13 +103,18 @@ export default function Home() {
         </ScrollReveal>
 
         <Divider />
+      
+      {/* SECTION 10: REGISTRY (NEW) */}
+        <Registry />
 
-        {/* SECTION 10: FAQs */}
+        <Divider />
+
+        {/* SECTION 11: FAQs */}
         <FAQs />
 
         <Divider />
 
-        {/* SECTION 11: RSVP */}
+        {/* SECTION 12: RSVP */}
         <section className="min-h-screen w-full flex items-center justify-center relative overflow-hidden px-4 py-20">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none select-none">
             <h2 className="text-[12rem] md:text-[25rem] font-serif uppercase leading-none text-warm-dark">
