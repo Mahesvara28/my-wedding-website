@@ -79,8 +79,8 @@ export default function Sponsors() {
                 <div>
                   <p className="text-warm-dark font-sans text-sm uppercase tracking-wider mb-1">Groom's Men</p>
                   <ul className="text-warm-dark font-serif text-lg space-y-1 list-none">
-                    <li>Inigo Calalang</li><li>Bryan Elauria</li><li>Paolo Sibulo</li>
-                    <li>Juan Paolo Macatangay</li><li>Erik Katindig</li><li>David Apolonio</li><li>Third Katindig</li>
+                    <li>Marius Inigo Calalang</li><li>Bryan Kenneth Elauria</li><li>Paolo Sibulo</li>
+                    <li>Juan Paolo Macatangay</li><li>Erik Carl Katindig</li><li>David Renan Apolonio</li><li>Eduardo Katindig III</li>
                   </ul>
                 </div>
               </div>
