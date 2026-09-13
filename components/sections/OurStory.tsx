@@ -1,11 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 
 const storySections = [
   {
     title: "Where It All Began",
-    text: "It all kicked off in 2017 when a workplace intro revealed the ultimate plot twist: we’d actually been running in the exact same neighborhood crew all along! What started as casual work banter quickly turned into late-night talks, endless laughter, and realizing we were standard-issue best friends meant for each other.",
+    text: "It all kicked off in 2017 when a workplace intro revealed the ultimate plot twist: we'd actually been running in the exact same neighborhood crew all along! What started as casual work banter quickly turned into late-night talks, endless laughter, and realizing we were standard-issue best friends meant for each other.",
     photos: ["/images/story1-photo1.webp", "/images/story1-photo2.webp", "/images/story1-photo3.webp", "/images/story1-photo4.webp"]
   },
   {
@@ -25,38 +25,78 @@ const storySections = [
   }
 ];
 
-// --- THE NEW LIGHTWEIGHT SLIDESHOW ---
+// --- SWIPEABLE LIGHTWEIGHT SLIDESHOW ---
 function LightSlideshow({ photos }: { photos: string[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
+  const startAutoRotation = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % photos.length);
     }, 5000);
-    return () => clearInterval(timer);
+  };
+
+  useEffect(() => {
+    startAutoRotation();
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
   }, [photos.length]);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+    
+    // Swipe threshold: 50px
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        // Swipe left - next image
+        setCurrentIndex((prev) => (prev + 1) % photos.length);
+      } else {
+        // Swipe right - previous image
+        setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
+      }
+      // Reset timer after manual swipe
+      startAutoRotation();
+    }
+    
+    touchStartX.current = null;
+  };
+
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden bg-warm-cream rounded-xl shadow-lg">
-      {/* Images - Simple CSS Fade (Much lighter than Framer Motion) */}
+    <div 
+      className="relative w-full h-[400px] md:h-[500px] overflow-hidden bg-warm-cream rounded-xl shadow-lg"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {photos.map((src, index) => (
         <img
           key={src}
           src={src}
           alt={`Story photo ${index + 1}`}
-          loading="lazy" // CRITICAL: Only loads when scrolled into view
+          loading="lazy"
           className={`absolute inset-0 w-full h-full object-contain md:object-cover transition-opacity duration-700 ease-in-out ${
             index === currentIndex ? "opacity-100" : "opacity-0"
           }`}
         />
       ))}
 
-      {/* Pagination Dots */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {photos.map((_, i) => (
           <button
             key={i}
-            onClick={() => setCurrentIndex(i)}
+            onClick={() => {
+              setCurrentIndex(i);
+              startAutoRotation();
+            }}
             className={`h-1.5 rounded-full transition-all duration-300 ${
               i === currentIndex ? "w-6 bg-warm-accent" : "w-1.5 bg-warm-dark/30"
             }`}
