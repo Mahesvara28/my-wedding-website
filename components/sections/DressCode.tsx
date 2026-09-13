@@ -27,7 +27,7 @@ export default function DressCode() {
           </p>
           {/* Changed to font-serif */}
           <p className="text-lg font-serif text-warm-dark">
-            Color Motif: <span className="font-semibold">Terracotta & Olive Green</span> (Formal)
+            Color Motif: <span className="font-semibold">Terracotta & Green</span> (Formal)
           </p>
         </motion.div>
 
@@ -53,13 +53,13 @@ export default function DressCode() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white pointer-events-none">
                 <h3 className="text-3xl font-serif mb-2">Principal Sponsors</h3>
-                <p className="text-sm opacity-90 font-sans">Ninongs & Ninangs</p>
+                <p className="text-sm opacity-90 font-sans">Gentlemen & Ladies</p>
               </div>
             </div>
 
             <div className="p-8 space-y-8">
               <div className="text-center">
-                <p className="text-xs uppercase tracking-widest text-warm-accent mb-2 font-sans">Ninongs</p>
+                <p className="text-xs uppercase tracking-widest text-warm-accent mb-2 font-sans">Gentlemen</p>
                 <p className="text-lg font-serif text-warm-dark mb-4">Charcoal Gray Suit with Black Tie</p>
                 <div className="flex justify-center gap-4">
                   <div className="flex flex-col items-center gap-2">
@@ -74,7 +74,7 @@ export default function DressCode() {
               </div>
               <div className="w-full h-px bg-warm-beige/50" />
               <div className="text-center">
-                <p className="text-xs uppercase tracking-widest text-warm-accent mb-2 font-sans">Ninangs</p>
+                <p className="text-xs uppercase tracking-widest text-warm-accent mb-2 font-sans">Ladies</p>
                 <p className="text-lg font-serif text-warm-dark mb-4">Long Dark Green or Emerald Gowns</p>
                 <div className="flex justify-center gap-4">
                   <div className="flex flex-col items-center gap-2">

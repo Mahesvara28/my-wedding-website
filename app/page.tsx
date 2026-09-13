@@ -137,7 +137,7 @@ export default function Home() {
               </h3>
               <div className="h-16 w-[1px] bg-warm-beige mx-auto" />
               <p className="text-warm-dark text-[10px] tracking-[0.5em] uppercase font-sans">
-                See you in Manila &bull; 2027
+                FOREVER STARTS HERE · 02.21.2027
               </p>
             </div>
           </ScrollReveal>

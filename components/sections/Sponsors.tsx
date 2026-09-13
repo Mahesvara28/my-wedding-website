@@ -37,7 +37,7 @@ export default function Sponsors() {
             {[
               ["Tristana Umali", "Atty. Al Matthew Umali"],
               ["Rosario Carla Dionisio", "Atty. Lorenze Angelo Dionisio"],
-              ["Lanie Funtanilla", "Claro Funtanilla"],
+              ["Lorna M. Funtanilla", "Claro R. Funtanilla"],
               ["Kathryn Joyce Cabochan", "Charlie Rodriguez"],
               ["Cleo Alvero", "Edgar Tordesillas"],
               ["Maria Lourdes Violeta Gaerlan", "German Maravilla"],

@@ -22,6 +22,11 @@ export default function Gallery() {
     "/images/temp10.webp",
     "/images/temp11.webp",
     "/images/temp12.webp",
+    "/images/temp13.webp",
+    "/images/temp14.webp",
+    "/images/temp15.webp",
+    "/images/temp16.webp",
+
   ];
 
   return (
