@@ -41,7 +41,8 @@ export default function Sponsors() {
               ["Kathryn Joyce Cabochan", "Charlie Rodriguez"],
               ["Cleo Alvero", "Edgar Tordesillas"],
               ["Maria Lourdes Violeta Gaerlan", "German Maravilla"],
-              ["Mary Ann Mendoza", "Alberto Gochangco"]
+              ["Mary Ann Mendoza", "Alberto Gochangco"],
+              ["Marlyn M. Dayag", "Ar. Dominador Macatuggal"]
             ].map((couple, i) => (
               <div key={i} className="text-center">
                 <p className="text-warm-dark font-serif text-lg">{couple[0]}</p>

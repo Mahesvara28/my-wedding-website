@@ -6,14 +6,14 @@ const venues = [
   {
     title: "The Ceremony",
     name: "Sacred Heart of Jesus Parish",
-    time: "2:00 PM",
+    time: "2:00 - 4:00 PM",
     image: "/images/Church.jpg",
     directionsLink: "https://maps.app.goo.gl/YTKgZPEfWf7W1vpw9",
   },
   {
     title: "The Celebration",
     name: "The Palms Country Club By Filinvest",
-    time: "5:00 PM",
+    time: "5:00 - 9:00 PM",
     image: "/images/Reception.jpg",
     directionsLink:
       "https://www.google.com/maps/search/?api=1&query=The+Palms+Country+Club+By+Filinvest+Muntinlupa",
