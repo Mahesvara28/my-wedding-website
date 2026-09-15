@@ -41,7 +41,6 @@ export default function Sponsors() {
               ["Marlyn M. Dayag", "Ar. Dominador Macatuggal"],
               ["Kathryn Joyce Cabochan", "Charlie Rodriguez"],
               ["Cleo Alvero", "Edgar Tordesillas"], 
-              ["Marlyn M. Dayag", "Ar. Dominador Macatuggal"],
               ["Maria Lourdes Violeta Gaerlan", "German Maravilla"],
               ["Mary Ann Mendoza", "Alberto Gochangco"],
             ].map((couple, i) => (
