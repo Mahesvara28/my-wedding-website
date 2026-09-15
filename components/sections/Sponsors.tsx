@@ -39,8 +39,8 @@ export default function Sponsors() {
               ["Rosario Carla Dionisio", "Atty. Lorenze Angelo Dionisio"],
               ["Lorna M. Funtanilla", "Claro R. Funtanilla"],
               ["Kathryn Joyce Cabochan", "Charlie Rodriguez"],
-              ["Cleo Alvero", "Edgar Tordesillas"], 
               ["Marlyn M. Dayag", "Ar. Dominador Macatuggal"],
+              ["Cleo Alvero", "Edgar Tordesillas"], 
               ["Maria Lourdes Violeta Gaerlan", "German Maravilla"],
               ["Mary Ann Mendoza", "Alberto Gochangco"],
             ].map((couple, i) => (
