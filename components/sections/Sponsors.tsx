@@ -95,7 +95,7 @@ export default function Sponsors() {
             <div className="text-center">
               <p className="text-warm-dark font-serif text-lg">Domingo Jangayo Jr</p>
               <p className="text-warm-accent italic font-serif text-lg">&</p>
-              <p className="text-warm-dark font-serif text-lg">Reichelle Dela Cruz</p>
+              <p className="text-warm-dark font-serif text-lg">Michelle Honey Co </p>
             </div>
           </ScrollReveal>
           <ScrollReveal variant="fadeUp" delay={0.2}>
