@@ -1,34 +1,46 @@
 import "./globals.css";
-import { Pinyon_Script, Cormorant_Garamond, Montserrat } from "next/font/google";
+import {
+  Pinyon_Script,
+  Cormorant_Garamond,
+  Montserrat,
+} from "next/font/google";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://paoanddei.vercel.app"),
+
   title: "Pao & Dei | Wedding Invitation",
-  description: "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
+
+  description:
+    "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
+
   openGraph: {
     title: "Pao & Dei | Wedding Invitation",
-    description: "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
-    url: "https://paoanddei.vercel.app",
+    description:
+      "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
+    url: "https://paoanddei.vercel.app/",
+    siteName: "Pao & Dei Wedding",
     type: "website",
+
     images: [
       {
-        // Make sure to change .webp to .jpg if your file is a JPEG!
-        url: "https://paoanddei.vercel.app/images/temp16.webp", 
+        url: "/images/temp16.webp",
         width: 1200,
         height: 630,
         alt: "Pao and Dei Wedding",
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Pao & Dei | Wedding Invitation",
-    description: "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
-    images: ["https://paoanddei.vercel.app/images/temp16.webp"],
+    description:
+      "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
+    images: ["/images/temp16.webp"],
   },
 };
 
-// ... (keep your font configurations exactly as they are below)
 const pinyon = Pinyon_Script({
   weight: "400",
   subsets: ["latin"],
@@ -52,7 +64,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${pinyon.variable} ${cormorant.variable} ${montserrat.variable}`}>
+    <html
+      lang="en"
+      className={`${pinyon.variable} ${cormorant.variable} ${montserrat.variable}`}
+    >
       <body className={`${montserrat.className} antialiased`}>
         {children}
       </body>
