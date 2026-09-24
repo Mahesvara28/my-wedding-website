@@ -2,16 +2,21 @@ import "./globals.css";
 import { Pinyon_Script, Cormorant_Garamond, Montserrat } from "next/font/google";
 import type { Metadata } from "next";
 
-// 1. Metadata for Link Previews (Thumbnail, Title, Description)
+// Replace this with your ACTUAL live website URL
+const SITE_URL = "https://paoanddei.vercel.app"; 
+
 export const metadata: Metadata = {
   title: "Pao & Dei | Wedding Invitation",
   description: "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
   openGraph: {
     title: "Pao & Dei | Wedding Invitation",
     description: "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
+    url: SITE_URL,
+    type: "website",
     images: [
       {
-        url: "/images/hero-bg-1.webp", // <-- Uses your beautiful photo!
+        // MUST be an absolute URL for social media to find it
+        url: `${SITE_URL}/images/hero-bg-1.webp`, 
         width: 1200,
         height: 630,
         alt: "Pao and Dei Wedding",
@@ -22,25 +27,23 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pao & Dei | Wedding Invitation",
     description: "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
-    images: ["/images/hero-bg-1.webp"],
+    images: [`${SITE_URL}/images/hero-bg-1.webp`],
   },
 };
 
-// 2. Calligraphic/Formal Script for Names & Key Focal Text
+// ... (keep your font configurations exactly as they are below)
 const pinyon = Pinyon_Script({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-pinyon",
 });
 
-// 3. Traditional Serif for Date, Location, and Secondary Details
 const cormorant = Cormorant_Garamond({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-cormorant",
 });
 
-// 4. Clean Sans-Serif for small UI text (buttons, labels)
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
