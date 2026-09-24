@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     title: "Pao & Dei | Wedding Invitation",
     description:
       "We're so excited to step into this next chapter, and we'd love for you to join us to celebrate our marriage on the 21st of February, 2027.",
-    url: "https://paoanddei.vercel.app/?v=4",
+    url: "https://paoanddei.vercel.app/",
     siteName: "Pao & Dei Wedding",
     type: "website",
     images: [
       {
-        url: "https://paoanddei.vercel.app/images/mess-temp.jpg", // Use absolute URL
-        width: 1200,  // Changed from 4672
-        height: 1200, // Changed from 7008 (vertical/portrait ratio)
+        url: "https://paoanddei.vercel.app/images/mess-temp-v4.jpg",
+        width: 1200,
+        height: 1200,
         alt: "Pao and Dei Wedding",
       },
     ],
@@ -36,7 +36,9 @@ export const metadata: Metadata = {
     title: "Pao & Dei | Wedding Invitation",
     description:
       "We're so excited to step into this next chapter, and we'd love for you to join us to celebrate our marriage on the 21st of February, 2027.",
-    images: ["https://paoanddei.vercel.app/images/mess-temp.jpg"], // Use absolute URL
+    images: [
+      "https://paoanddei.vercel.app/images/mess-temp-v4.jpg",
+    ],
   },
 };
 
