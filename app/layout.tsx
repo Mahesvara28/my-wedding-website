@@ -8,19 +8,27 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://paoanddei.vercel.app"),
+
   title: "Pao & Dei | Wedding Invitation",
-  description: "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
+
+  description:
+    "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
 
   openGraph: {
     title: "Pao & Dei | Wedding Invitation",
-    description: "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
+
+    description:
+      "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
+
     url: "https://paoanddei.vercel.app/",
+
     siteName: "Pao & Dei Wedding",
+
     type: "website",
+
     images: [
       {
-        // Added ?v=2 to force Facebook to see it as a NEW image
-        url: "/images/link-pic.webp?v=2", 
+        url: "/images/link-pic.webp",
         width: 1200,
         height: 630,
         alt: "Pao and Dei Wedding",
@@ -30,13 +38,16 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
+
     title: "Pao & Dei | Wedding Invitation",
-    description: "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
-    images: ["/images/link-pic.webp?v=2"],
+
+    description:
+      "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
+
+    images: ["/images/link-pic.webp"],
   },
 };
 
-// ... (rest of your code stays the same)
 const pinyon = Pinyon_Script({
   weight: "400",
   subsets: ["latin"],
@@ -56,9 +67,9 @@ const montserrat = Montserrat({
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html
       lang="en"
