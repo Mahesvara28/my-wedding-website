@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   type: "website",
   images: [
     {
-      url: "/images/story1-photo1.webp",
+      url: "/images/mess-temp.jpg",
       width: 4672,
       height: 7008,
       alt: "Pao and Dei Wedding",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   title: "Pao & Dei | Wedding Invitation",
   description:
     "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
-  images: ["/images/story1-photo1.webp"],
+  images: ["/images/mess-temp.jpg"],
 },
 }
 
