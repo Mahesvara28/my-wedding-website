@@ -7,7 +7,7 @@ import {
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://paoanddei.vercel.app"),
+  metadataBase: new URL("https://paoanddei.vercel.app/"),
 
   title: "Pao & Dei | Wedding Invitation",
 
