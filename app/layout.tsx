@@ -2,21 +2,18 @@ import "./globals.css";
 import { Pinyon_Script, Cormorant_Garamond, Montserrat } from "next/font/google";
 import type { Metadata } from "next";
 
-// Replace this with your ACTUAL live website URL
-const SITE_URL = "https://paoanddei.vercel.app"; 
-
 export const metadata: Metadata = {
   title: "Pao & Dei | Wedding Invitation",
   description: "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
   openGraph: {
     title: "Pao & Dei | Wedding Invitation",
     description: "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
-    url: SITE_URL,
+    url: "https://paoanddei.vercel.app",
     type: "website",
     images: [
       {
-        // MUST be an absolute URL for social media to find it
-        url: `${SITE_URL}/images/hero-bg-1.webp`, 
+        // Make sure to change .webp to .jpg if your file is a JPEG!
+        url: "https://paoanddei.vercel.app/images/temp16.webp", 
         width: 1200,
         height: 630,
         alt: "Pao and Dei Wedding",
@@ -27,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pao & Dei | Wedding Invitation",
     description: "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
-    images: [`${SITE_URL}/images/hero-bg-1.webp`],
+    images: ["https://paoanddei.vercel.app/images/temp16.webp"],
   },
 };
 
