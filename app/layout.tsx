@@ -15,38 +15,30 @@ export const metadata: Metadata = {
     "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
 
   openGraph: {
-    title: "Pao & Dei | Wedding Invitation",
-
-    description:
-      "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
-
-    url: "https://paoanddei.vercel.app/",
-
-    siteName: "Pao & Dei Wedding",
-
-    type: "website",
-
-    images: [
-      {
-        url: "/images/link-pic.webp",
-        width: 1200,
-        height: 630,
-        alt: "Pao and Dei Wedding",
-      },
-    ],
-  },
+  title: "Pao & Dei | Wedding Invitation",
+  description:
+    "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
+  url: "https://paoanddei.vercel.app/",
+  siteName: "Pao & Dei Wedding",
+  type: "website",
+  images: [
+    {
+      url: "/images/link-pic.webp",
+      width: 1200,
+      height: 630,
+      alt: "Pao and Dei Wedding",
+    },
+  ],
+},
 
   twitter: {
-    card: "summary_large_image",
-
-    title: "Pao & Dei | Wedding Invitation",
-
-    description:
-      "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
-
-    images: ["/images/link-pic.webp"],
-  },
-};
+  card: "summary_large_image",
+  title: "Pao & Dei | Wedding Invitation",
+  description:
+    "Join us as we celebrate our marriage on February 21, 2027 in Manila.",
+  images: ["/images/link-pic.webp"],
+},
+}
 
 const pinyon = Pinyon_Script({
   weight: "400",
