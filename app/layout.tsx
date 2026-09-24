@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: "Pao & Dei | Wedding Invitation",
     description:
       "We're so excited to step into this next chapter, and we'd love for you to join us to celebrate our marriage on the 21st of February, 2027.",
-    url: "https://paoanddei.vercel.app/?v=3",
+    url: "https://paoanddei.vercel.app/?v=4",
     siteName: "Pao & Dei Wedding",
     type: "website",
     images: [
