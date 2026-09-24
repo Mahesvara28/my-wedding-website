@@ -7,7 +7,8 @@ import {
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://paoanddei.vercel.app/"),
+  // 1. Updated to your new domain
+  metadataBase: new URL("https://paoloanddei.vercel.app/"),
 
   title: "Pao & Dei | Wedding Invitation",
 
@@ -18,12 +19,14 @@ export const metadata: Metadata = {
     title: "Pao & Dei | Wedding Invitation",
     description:
       "We're so excited to step into this next chapter, and we'd love for you to join us to celebrate our marriage on the 21st of February, 2027.",
-    url: "https://paoanddei.vercel.app/",
+    // 2. Updated to your new domain
+    url: "https://paoloanddei.vercel.app/",
     siteName: "Pao & Dei Wedding",
     type: "website",
     images: [
       {
-        url: "https://paoanddei.vercel.app/images/mess-temp-v4.jpg",
+        // 3. Updated image URL to your new domain
+        url: "https://paoloanddei.vercel.app/images/mess-temp-v4.jpg",
         width: 1200,
         height: 1200,
         alt: "Pao and Dei Wedding",
@@ -36,8 +39,9 @@ export const metadata: Metadata = {
     title: "Pao & Dei | Wedding Invitation",
     description:
       "We're so excited to step into this next chapter, and we'd love for you to join us to celebrate our marriage on the 21st of February, 2027.",
+    // 4. Updated twitter image URL to your new domain
     images: [
-      "https://paoanddei.vercel.app/images/mess-temp-v4.jpg",
+      "https://paoloanddei.vercel.app/images/mess-temp-v4.jpg",
     ],
   },
 };
