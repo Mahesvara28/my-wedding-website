@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     images: [
       {
         // 3. Updated image URL to your new domain
-        url: "https://paoloanddei.vercel.app/images/mess-temp-v4.jpg",
+        url: "https://paoloanddei.vercel.app/images/mess-temp-v4.png",
         width: 1200,
-        height: 1200,
+        height: 630,
         alt: "Pao and Dei Wedding",
       },
     ],
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
       "We're so excited to step into this next chapter, and we'd love for you to join us to celebrate our marriage on the 21st of February, 2027.",
     // 4. Updated twitter image URL to your new domain
     images: [
-      "https://paoloanddei.vercel.app/images/mess-temp-v4.jpg",
+      "https://paoloanddei.vercel.app/images/mess-temp-v4.png",
     ],
   },
 };
