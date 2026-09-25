@@ -13,11 +13,16 @@ export default function RSVPForm() {
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  // Helper to check if the name is invalid (blank, N/A, etc.)
+  const invalidNames = ["n/a", "na", "none", "blank", "unknown"];
+  const isNameInvalid = !fullName.trim() || invalidNames.includes(fullName.trim().toLowerCase());
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!fullName.trim()) {
-      setError("Please enter your full name.");
+    // Strict Name Validation
+    if (isNameInvalid) {
+      setError("Please enter your actual full name. 'N/A' is not allowed.");
       return;
     }
     if (attending === null) {
@@ -30,7 +35,6 @@ export default function RSVPForm() {
 
     console.log("Submitting RSVP for:", fullName, "Attending:", attending);
 
-    // Insert directly into the rsvps table using the typed full_name
     const { error: rsvpError } = await supabase
       .from("rsvps")
       .insert([
@@ -47,7 +51,6 @@ export default function RSVPForm() {
       setError("Something went wrong. Please try again.");
       setLoading(false);
     } else {
-      // Confetti animation with wedding colors
       const duration = 3 * 1000;
       const animationEnd = Date.now() + duration;
       const frame = () => {
@@ -56,7 +59,7 @@ export default function RSVPForm() {
           angle: 60,
           spread: 55,
           origin: { x: 0 },
-          colors: ["#E07A5F", "#5A6B4A", "#F2E8DC"], // Terracotta, Olive, Cream
+          colors: ["#E07A5F", "#5A6B4A", "#F2E8DC"],
         });
         confetti({
           particleCount: 3,
@@ -82,11 +85,9 @@ export default function RSVPForm() {
         animate={{ opacity: 1, scale: 1 }}
         className="text-center p-10 bg-warm-cream/90 backdrop-blur-md rounded-3xl shadow-2xl border border-warm-beige/50"
       >
-        {/* Changed to font-script for elegant heading */}
         <h2 className="text-5xl md:text-6xl font-script text-warm-dark mb-4">
           Thank You!
         </h2>
-        {/* Changed to font-serif for timeless detail text */}
         <p className="text-warm-dark/80 font-serif text-lg">
           Your RSVP has been received. We can't wait to celebrate with you!
         </p>
@@ -103,20 +104,17 @@ export default function RSVPForm() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           onSubmit={handleSubmit}
-          className="bg-warm-cream/90 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-warm-beige/50"
+          className="relative z-20 pointer-events-auto bg-warm-cream/90 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-warm-beige/50"
         >
-          {/* Changed to font-script for main focal heading */}
           <h2 className="text-6xl md:text-7xl font-script text-center mb-2 text-warm-dark">
             RSVP
           </h2>
-          {/* Changed to font-serif for elegant subtitle */}
           <p className="text-warm-dark/60 text-center mb-8 font-serif text-lg italic">
             Please let us know if you can make it
           </p>
 
           {/* Full Name Input */}
           <div className="mb-6">
-            {/* Updated label to elegant uppercase sans-serif */}
             <label className="block text-xs uppercase tracking-widest font-sans text-warm-accent mb-2 text-left">
               Full Name *
             </label>
@@ -127,7 +125,10 @@ export default function RSVPForm() {
               className="w-full p-4 rounded-xl border border-warm-beige/50 mb-2 text-warm-dark font-serif outline-none focus:ring-2 focus:ring-warm-accent bg-white/50 placeholder-warm-dark/40 transition-all"
               placeholder="e.g., Juan Dela Cruz"
               value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
+              onChange={(e) => {
+                setFullName(e.target.value);
+                if (error) setError(""); // Clear error when they start typing
+              }}
             />
           </div>
 
@@ -203,7 +204,8 @@ export default function RSVPForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            disabled={loading || attending === null || !fullName.trim()}
+            // Button is disabled if loading, no attendance selected, OR name is invalid
+            disabled={loading || attending === null || isNameInvalid}
             className="w-full bg-warm-accent text-white p-4 rounded-xl font-sans uppercase tracking-widest text-sm font-medium hover:bg-[#8b6a4f] disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-[0.98] shadow-md"
           >
             {loading ? "Sending..." : "Send RSVP"}
