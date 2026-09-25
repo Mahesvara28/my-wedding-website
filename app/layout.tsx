@@ -13,12 +13,12 @@ export const metadata: Metadata = {
   title: "Pao & Dei | Wedding Invitation",
 
   description:
-"Join us to celebrate our marriage on the 21st of February, 2027.",
+"Join us as we celebrate our marriage on February 21, 2027.",
 
   openGraph: {
     title: "Pao & Dei | Wedding Invitation",
     description:
-      "Join us to celebrate our marriage on the 21st of February, 2027.",
+      "Join us as we celebrate our marriage on February 21, 2027.",
     // 2. Updated to your new domain
     url: "https://paoloanddei.vercel.app/",
     siteName: "Pao & Dei Wedding",
