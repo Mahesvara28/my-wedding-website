@@ -6,6 +6,7 @@ import confetti from "canvas-confetti";
 
 export default function RSVPForm() {
   const [fullName, setFullName] = useState("");
+  const [nameTouched, setNameTouched] = useState(false); // Tracks if user clicked the name box
   const [attending, setAttending] = useState<boolean | null>(null);
   const [dietary, setDietary] = useState("");
   const [song, setSong] = useState("");
@@ -13,27 +14,26 @@ export default function RSVPForm() {
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  // Helper to check if the name is invalid (blank, N/A, etc.)
-  const invalidNames = ["n/a", "na", "none", "blank", "unknown"];
-  const isNameInvalid = !fullName.trim() || invalidNames.includes(fullName.trim().toLowerCase());
+  // List of invalid names to block
+  const invalidNames = ["n/a", "na", "none", "blank", "unknown", "-"];
+  
+  // Validation logic
+  const isNameEmpty = !fullName.trim();
+  const isNameInvalid = invalidNames.includes(fullName.trim().toLowerCase());
+  const isFormValid = !isNameEmpty && !isNameInvalid && attending !== null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Strict Name Validation
-    if (isNameInvalid) {
-      setError("Please enter your actual full name. 'N/A' is not allowed.");
-      return;
-    }
-    if (attending === null) {
-      setError("Please let us know if you will be attending.");
-      return;
+    // Force show errors if they try to submit without filling it out
+    setNameTouched(true); 
+    
+    if (!isFormValid) {
+      return; // Stop submission if invalid
     }
 
     setLoading(true);
     setError("");
-
-    console.log("Submitting RSVP for:", fullName, "Attending:", attending);
 
     const { error: rsvpError } = await supabase
       .from("rsvps")
@@ -51,6 +51,7 @@ export default function RSVPForm() {
       setError("Something went wrong. Please try again.");
       setLoading(false);
     } else {
+      // Confetti animation
       const duration = 3 * 1000;
       const animationEnd = Date.now() + duration;
       const frame = () => {
@@ -122,14 +123,43 @@ export default function RSVPForm() {
               type="text"
               required
               autoCapitalize="words"
-              className="w-full p-4 rounded-xl border border-warm-beige/50 mb-2 text-warm-dark font-serif outline-none focus:ring-2 focus:ring-warm-accent bg-white/50 placeholder-warm-dark/40 transition-all"
+              // Change border to red if there is an error
+              className={`w-full p-4 rounded-xl border mb-2 text-warm-dark font-serif outline-none focus:ring-2 focus:ring-warm-accent bg-white/50 placeholder-warm-dark/40 transition-all ${
+                nameTouched && (isNameEmpty || isNameInvalid) 
+                  ? "border-red-400 focus:ring-red-400" 
+                  : "border-warm-beige/50"
+              }`}
               placeholder="e.g., Juan Dela Cruz"
               value={fullName}
               onChange={(e) => {
                 setFullName(e.target.value);
-                if (error) setError(""); // Clear error when they start typing
+                if (error) setError("");
               }}
+              // Trigger the visual cue when they click away from the box
+              onBlur={() => setNameTouched(true)} 
             />
+            
+            {/* Visual Cues / Prompts */}
+            <AnimatePresence>
+              {nameTouched && isNameEmpty && (
+                <motion.p 
+                  initial={{ opacity: 0, y: -5 }} 
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-red-500 text-xs mt-1 font-sans text-left"
+                >
+                  Please enter your full name.
+                </motion.p>
+              )}
+              {nameTouched && isNameInvalid && (
+                <motion.p 
+                  initial={{ opacity: 0, y: -5 }} 
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-red-500 text-xs mt-1 font-sans text-left"
+                >
+                  Please enter your actual name (N/A is not allowed).
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Attending Buttons */}
@@ -204,14 +234,13 @@ export default function RSVPForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            // Button is disabled if loading, no attendance selected, OR name is invalid
-            disabled={loading || attending === null || isNameInvalid}
+            disabled={loading || !isFormValid}
             className="w-full bg-warm-accent text-white p-4 rounded-xl font-sans uppercase tracking-widest text-sm font-medium hover:bg-[#8b6a4f] disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-[0.98] shadow-md"
           >
             {loading ? "Sending..." : "Send RSVP"}
           </button>
 
-          {/* Error Message */}
+          {/* General Error Message */}
           {error && (
             <p className="text-red-500 text-sm mt-4 text-center bg-red-50/50 p-3 rounded-lg border border-red-100 font-sans">
               {error}
